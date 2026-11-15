@@ -100,6 +100,13 @@ class SyncResultsTests(unittest.TestCase):
         # --watch=bogus is an unknown option form -> usage error, no ssh
         self.assertNotEqual(r.returncode, 0)
 
+    def test_ssh_config_option_accepted_and_validated(self):
+        r = run(SYNC, '--help')
+        self.assertIn('--ssh-config', r.stdout)
+        r = run(SYNC, 'somename', '--ssh-config', '/nonexistent-xyz')
+        self.assertNotEqual(r.returncode, 0)
+        self.assertIn('ssh-config', r.stderr)
+
 
 if __name__ == '__main__':
     unittest.main(verbosity=2)

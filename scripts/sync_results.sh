@@ -22,15 +22,19 @@ SSH_ALIAS=""
 WATCH=0
 REMOTE_ROOT="~/onhacks"
 LOCAL_ROOT="$DEFAULT_LOCAL_ROOT"
+SSH_CONFIG=""
 
 usage() {
   cat <<'EOF'
-Usage: bash scripts/sync_results.sh SSH_ALIAS [--watch] [--remote-root PATH] [--local-root PATH]
+Usage: bash scripts/sync_results.sh SSH_ALIAS [--watch] [--remote-root PATH] [--local-root PATH] [--ssh-config PATH]
 
-  SSH_ALIAS        ssh config alias of the worker (ports/users/keys live in ~/.ssh/config)
+  SSH_ALIAS        ssh config alias of the worker (ports/users/keys live in ~/.ssh/config
+                   or in the file given by --ssh-config)
   --watch          re-pull every 60s until Ctrl-C; transient SSH loss is tolerated
   --remote-root    remote project root   (default: ~/onhacks)
   --local-root     local results dir     (default: <repo>/artifacts/experiment-v1)
+  --ssh-config     alternate ssh config file (e.g. artifacts/worker_ssh_config);
+                   the alias is resolved inside THAT file, never global config
   -h, --help       this help
 
 Pulls <remote-root>/artifacts/experiment-v1/ -> <local-root>/ via
@@ -49,6 +53,9 @@ while [ $# -gt 0 ]; do
     --local-root)
       [ $# -ge 2 ] || { echo "error: --local-root requires a path" >&2; exit 2; }
       LOCAL_ROOT="$2"; shift 2 ;;
+    --ssh-config)
+      [ $# -ge 2 ] || { echo "error: --ssh-config requires a path" >&2; exit 2; }
+      SSH_CONFIG="$2"; shift 2 ;;
     -h|--help) usage; exit 0 ;;
     --*) echo "error: unknown option '$1'" >&2; usage >&2; exit 2 ;;
     *)
@@ -66,9 +73,18 @@ case "$SSH_ALIAS" in
   -*|*://*|*@*) echo "error: SSH_ALIAS must be a plain ~/.ssh/config alias, got '$SSH_ALIAS'" >&2; exit 2 ;;
 esac
 
-SSH=(ssh -o BatchMode=yes -o ConnectTimeout=10
-      -o StrictHostKeyChecking=yes
-      -o ServerAliveInterval=15 -o ServerAliveCountMax=4)
+SSH_OPTS=(-o BatchMode=yes -o ConnectTimeout=10
+          -o StrictHostKeyChecking=yes
+          -o ServerAliveInterval=15 -o ServerAliveCountMax=4)
+if [ -n "$SSH_CONFIG" ]; then
+  if [ ! -f "$SSH_CONFIG" ]; then
+    echo "error: --ssh-config '$SSH_CONFIG' not found" >&2
+    exit 2
+  fi
+  SSH=(ssh -F "$SSH_CONFIG" "${SSH_OPTS[@]}")
+else
+  SSH=(ssh "${SSH_OPTS[@]}")
+fi
 SRC="${SSH_ALIAS}:${REMOTE_ROOT}/artifacts/experiment-v1/"
 DST="$LOCAL_ROOT/"
 
