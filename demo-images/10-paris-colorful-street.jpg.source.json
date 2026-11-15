@@ -1,0 +1,117 @@
+{
+  "imageinfo": {
+    "size": 2482682,
+    "width": 4000,
+    "height": 3000,
+    "thumburl": "https://thumb.wikimedia.org/wikipedia/commons/thumb/4/48/Rue_Cr%C3%A9mieux_in_July_2022_2.jpg/1280px-Rue_Cr%C3%A9mieux_in_July_2022_2.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+    "thumbwidth": 1280,
+    "thumbheight": 960,
+    "responsiveUrls": {
+      "2": "https://thumb.wikimedia.org/wikipedia/commons/thumb/4/48/Rue_Cr%C3%A9mieux_in_July_2022_2.jpg/3840px-Rue_Cr%C3%A9mieux_in_July_2022_2.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail"
+    },
+    "thumbattribs": {
+      "src": "https://thumb.wikimedia.org/wikipedia/commons/thumb/4/48/Rue_Cr%C3%A9mieux_in_July_2022_2.jpg/1280px-Rue_Cr%C3%A9mieux_in_July_2022_2.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+      "decoding": "async",
+      "loading": "lazy",
+      "width": 1280,
+      "height": 960,
+      "srcset": "https://thumb.wikimedia.org/wikipedia/commons/thumb/4/48/Rue_Cr%C3%A9mieux_in_July_2022_2.jpg/3840px-Rue_Cr%C3%A9mieux_in_July_2022_2.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail 2x"
+    },
+    "url": "https://upload.wikimedia.org/wikipedia/commons/4/48/Rue_Cr%C3%A9mieux_in_July_2022_2.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+    "descriptionurl": "https://commons.wikimedia.org/wiki/File:Rue_Cr%C3%A9mieux_in_July_2022_2.jpg",
+    "descriptionshorturl": "https://commons.wikimedia.org/w/index.php?curid=124058529",
+    "extmetadata": {
+      "DateTime": {
+        "value": "2022-10-11 22:31:09",
+        "source": "mediawiki-metadata",
+        "hidden": ""
+      },
+      "ObjectName": {
+        "value": "Rue Cr\u00e9mieux in July 2022 2",
+        "source": "mediawiki-metadata"
+      },
+      "CommonsMetadataExtension": {
+        "value": 1.2,
+        "source": "extension",
+        "hidden": ""
+      },
+      "Categories": {
+        "value": "Rue Cr\u00e9mieux (Paris)|Self-published work|Uploads by DiscoA340",
+        "source": "commons-categories",
+        "hidden": ""
+      },
+      "Assessments": {
+        "value": "",
+        "source": "commons-categories",
+        "hidden": ""
+      },
+      "ImageDescription": {
+        "value": "Rue Cr\u00e9mieux in Paris, France.",
+        "source": "commons-desc-page"
+      },
+      "DateTimeOriginal": {
+        "value": "2022-07-25 17:33:35",
+        "source": "commons-desc-page"
+      },
+      "Credit": {
+        "value": "<span class=\"int-own-work\" lang=\"en\">Own work</span>",
+        "source": "commons-desc-page"
+      },
+      "Artist": {
+        "value": "<a href=\"//commons.wikimedia.org/wiki/User:DiscoA340\" title=\"User:DiscoA340\">DiscoA340</a>",
+        "source": "commons-desc-page"
+      },
+      "LicenseShortName": {
+        "value": "CC BY-SA 4.0",
+        "source": "commons-desc-page",
+        "hidden": ""
+      },
+      "UsageTerms": {
+        "value": "Creative Commons Attribution-Share Alike 4.0",
+        "source": "commons-desc-page"
+      },
+      "AttributionRequired": {
+        "value": "true",
+        "source": "commons-desc-page",
+        "hidden": ""
+      },
+      "LicenseUrl": {
+        "value": "https://creativecommons.org/licenses/by-sa/4.0",
+        "source": "commons-desc-page"
+      },
+      "Copyrighted": {
+        "value": "True",
+        "source": "commons-desc-page",
+        "hidden": ""
+      },
+      "Restrictions": {
+        "value": "",
+        "source": "commons-desc-page",
+        "hidden": ""
+      },
+      "License": {
+        "value": "cc-by-sa-4.0",
+        "source": "commons-templates",
+        "hidden": ""
+      }
+    }
+  },
+  "record": {
+    "file": "10-paris-colorful-street.jpg",
+    "kind": "untested public street photo; live inference required",
+    "place_described_by_source": "paris",
+    "source": "https://commons.wikimedia.org/wiki/File:Rue_Cr%C3%A9mieux_in_July_2022_2.jpg",
+    "source_title": "File:Rue Cr\u00e9mieux in July 2022 2.jpg",
+    "download_url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/4/48/Rue_Cr%C3%A9mieux_in_July_2022_2.jpg/1280px-Rue_Cr%C3%A9mieux_in_July_2022_2.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+    "author": "DiscoA340",
+    "license": "CC BY-SA 4.0",
+    "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
+    "changes": "Resized to at most 1280 pixels on the longest edge, JPEG re-encoded; EXIF/GPS metadata removed. No crop or cover.",
+    "note": "Location is a source description, not verified model output or precise query ground truth. No inference has been run on this photo.",
+    "sha256": "f7d857e5325f520b9b8798fb21f777c72c53863c65709927d8dbe56107ee1bc8",
+    "dimensions": [
+      1280,
+      960
+    ]
+  }
+}

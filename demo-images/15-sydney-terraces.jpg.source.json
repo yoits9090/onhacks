@@ -1,0 +1,130 @@
+{
+  "imageinfo": {
+    "size": 1619266,
+    "width": 4768,
+    "height": 3000,
+    "thumburl": "https://thumb.wikimedia.org/wikipedia/commons/thumb/2/28/High_Street%2C_Millers_Point_03.jpg/1280px-High_Street%2C_Millers_Point_03.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+    "thumbwidth": 1280,
+    "thumbheight": 805,
+    "responsiveUrls": {
+      "2": "https://thumb.wikimedia.org/wikipedia/commons/thumb/2/28/High_Street%2C_Millers_Point_03.jpg/3840px-High_Street%2C_Millers_Point_03.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail"
+    },
+    "thumbattribs": {
+      "src": "https://thumb.wikimedia.org/wikipedia/commons/thumb/2/28/High_Street%2C_Millers_Point_03.jpg/1280px-High_Street%2C_Millers_Point_03.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+      "decoding": "async",
+      "loading": "lazy",
+      "width": 1280,
+      "height": 805,
+      "srcset": "https://thumb.wikimedia.org/wikipedia/commons/thumb/2/28/High_Street%2C_Millers_Point_03.jpg/3840px-High_Street%2C_Millers_Point_03.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail 2x"
+    },
+    "url": "https://upload.wikimedia.org/wikipedia/commons/2/28/High_Street%2C_Millers_Point_03.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+    "descriptionurl": "https://commons.wikimedia.org/wiki/File:High_Street,_Millers_Point_03.jpg",
+    "descriptionshorturl": "https://commons.wikimedia.org/w/index.php?curid=75680830",
+    "extmetadata": {
+      "DateTime": {
+        "value": "2019-01-08 10:01:40",
+        "source": "mediawiki-metadata",
+        "hidden": ""
+      },
+      "ObjectName": {
+        "value": "High Street, Millers Point 03",
+        "source": "mediawiki-metadata"
+      },
+      "CommonsMetadataExtension": {
+        "value": 1.2,
+        "source": "extension",
+        "hidden": ""
+      },
+      "Categories": {
+        "value": "3-9 High Street, Millers Point|Self-published work|January 2019 in Sydney|Australia photographs taken on 2019-01-04|Files with coordinates missing SDC location of creation (34\u00b0 S, 151\u00b0 E)",
+        "source": "commons-categories",
+        "hidden": ""
+      },
+      "Assessments": {
+        "value": "",
+        "source": "commons-categories",
+        "hidden": ""
+      },
+      "GPSLatitude": {
+        "value": "-33.861200",
+        "source": "commons-desc-page"
+      },
+      "GPSLongitude": {
+        "value": "151.203300",
+        "source": "commons-desc-page"
+      },
+      "GPSMapDatum": {
+        "value": "WGS-84",
+        "source": "commons-desc-page",
+        "hidden": ""
+      },
+      "ImageDescription": {
+        "value": "<a href=\"https://en.wikipedia.org/wiki/3-9_High_Street,_Millers_Point\" class=\"extiw\" title=\"en:3-9 High Street, Millers Point\">3-9 High Street</a>, <a href=\"https://en.wikipedia.org/wiki/Millers_Point\" class=\"extiw\" title=\"w:Millers Point\">Millers Point</a>, in the <a href=\"https://en.wikipedia.org/wiki/City_of_Sydney\" class=\"extiw\" title=\"w:City of Sydney\">City of Sydney</a>, New South Wales, Australia",
+        "source": "commons-desc-page"
+      },
+      "DateTimeOriginal": {
+        "value": "2019-01-04 18:46:27",
+        "source": "commons-desc-page"
+      },
+      "Credit": {
+        "value": "<span class=\"int-own-work\" lang=\"en\">Own work</span>",
+        "source": "commons-desc-page"
+      },
+      "Artist": {
+        "value": "<a href=\"//commons.wikimedia.org/wiki/User:Rangasyd\" title=\"User:Rangasyd\">Rangasyd</a>",
+        "source": "commons-desc-page"
+      },
+      "LicenseShortName": {
+        "value": "CC BY-SA 4.0",
+        "source": "commons-desc-page",
+        "hidden": ""
+      },
+      "UsageTerms": {
+        "value": "Creative Commons Attribution-Share Alike 4.0",
+        "source": "commons-desc-page"
+      },
+      "AttributionRequired": {
+        "value": "true",
+        "source": "commons-desc-page",
+        "hidden": ""
+      },
+      "LicenseUrl": {
+        "value": "https://creativecommons.org/licenses/by-sa/4.0",
+        "source": "commons-desc-page"
+      },
+      "Copyrighted": {
+        "value": "True",
+        "source": "commons-desc-page",
+        "hidden": ""
+      },
+      "Restrictions": {
+        "value": "",
+        "source": "commons-desc-page",
+        "hidden": ""
+      },
+      "License": {
+        "value": "cc-by-sa-4.0",
+        "source": "commons-templates",
+        "hidden": ""
+      }
+    }
+  },
+  "record": {
+    "file": "15-sydney-terraces.jpg",
+    "kind": "untested public street photo; live inference required",
+    "place_described_by_source": "sydney",
+    "source": "https://commons.wikimedia.org/wiki/File:High_Street,_Millers_Point_03.jpg",
+    "source_title": "File:High Street, Millers Point 03.jpg",
+    "download_url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/2/28/High_Street%2C_Millers_Point_03.jpg/1280px-High_Street%2C_Millers_Point_03.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+    "author": "Rangasyd",
+    "license": "CC BY-SA 4.0",
+    "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
+    "changes": "Resized to at most 1280 pixels on the longest edge, JPEG re-encoded; EXIF/GPS metadata removed. No crop or cover.",
+    "note": "Location is a source description, not verified model output or precise query ground truth. No inference has been run on this photo.",
+    "sha256": "9b229a815ab6a25086df2d4e1a2c066375d988c2ef40b49b922477b18f858f81",
+    "dimensions": [
+      1280,
+      805
+    ]
+  }
+}

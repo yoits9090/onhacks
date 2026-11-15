@@ -1,0 +1,185 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#f4f6fa">
+  <meta name="description" content="Explore what a street photo can reveal about its location. Inspect metadata, cover a detail, and compare real location estimates.">
+  <title>Offgrid — A photo says where.</title>
+  <link rel="icon" href="/assets/offgrid.svg" type="image/svg+xml">
+  <link rel="preload" href="/assets/manrope-latin-wght.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="/vendor/leaflet-1.9.4.css">
+  <link rel="stylesheet" href="/exposure.css">
+  <script defer src="/vendor/exifr-7.1.3.js"></script>
+  <script defer src="/vendor/leaflet-1.9.4.js"></script>
+  <script defer src="/exposure.js"></script>
+</head>
+<body>
+  <a class="skip-link" href="#workbench">Skip to photo workbench</a>
+  <header class="site-header page-width">
+    <a class="wordmark" href="/" aria-label="Offgrid home">
+      <svg class="brand-mark" width="34" height="34" viewBox="0 0 40 40" aria-hidden="true"><ellipse cx="20" cy="20" rx="17" ry="10" transform="rotate(-38 20 20)" fill="none" stroke="currentColor" stroke-width="1.8"/><path d="m25 8-2 16-8 8 2-16z" fill="currentColor"/><circle cx="20" cy="20" r="2" fill="#f4f6fa"/></svg>
+      <span>offgrid<span class="wordmark-dot">.</span></span>
+    </a>
+    <span id="mode-badge" class="mode-badge"><span></span><b>Connecting</b></span>
+    <nav aria-label="Main navigation">
+      <a href="/lab" class="lab-link">Calibration lab</a>
+      <button id="how-button" class="text-button">How it works</button>
+      <button id="presentation-button" class="icon-button presentation-button" aria-pressed="false" title="Presentation mode" aria-label="Presentation mode">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 4h18M5 4v12h14V4M12 16v5m-4 0 4-3 4 3"/></svg>
+      </button>
+    </nav>
+  </header>
+
+  <main class="page-width">
+    <section class="intro" aria-labelledby="page-title">
+      <div>
+        <h1 id="page-title">A photo says where.</h1>
+        <p>See what a street photo reveals. Hide a detail. Test it again.</p>
+      </div>
+      <button id="reset-story" class="text-button reset-story" title="Return to the first example and hide all results"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 10a8 8 0 1 1 1 7M4 4v6h6"/></svg>Reset story</button>
+    </section>
+
+    <section id="presenter-bar" class="presenter-bar" aria-label="Five-minute presentation controls">
+      <div class="presenter-clock"><output id="presenter-time" role="timer" aria-live="off" aria-label="Presentation elapsed time">0:00</output><button id="timer-toggle" class="text-button">Start timer</button><button id="timer-reset" class="icon-button" aria-label="Reset presentation timer" title="Reset timer">↺</button></div>
+      <nav class="presenter-cues" aria-label="Presentation cues">
+        <button data-cue="photo" aria-current="step"><span>Photo</span><small>0:00</small></button>
+        <button data-cue="reveal"><span>Reveal</span><small>0:30</small></button>
+        <button data-cue="edit"><span>Edit</span><small>1:30</small></button>
+        <button data-cue="evidence"><span>Evidence</span><small>2:45</small></button>
+        <button data-cue="takeaway"><span>Takeaway</span><small>3:45</small></button>
+      </nav>
+      <span id="timer-note" class="timer-note">Close by 4:55</span>
+    </section>
+
+    <div id="service-notice" class="notice" role="status" hidden>
+      <span id="service-message"></span><button id="retry-status" class="text-button" hidden>Try connection again</button>
+    </div>
+    <div id="error-message" class="notice error-notice" role="alert" hidden></div>
+
+    <section id="workbench" class="workbench" aria-label="Photo and location workbench" tabindex="-1">
+      <article class="photo-panel">
+        <div class="panel-heading">
+          <div class="photo-title"><span class="section-dot"></span><h2 id="photo-title">Your starting point</h2></div>
+          <button id="upload-button" class="upload-button"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 16V3m-5 5 5-5 5 5M4 15v5h16v-5"/></svg>Choose a photo</button>
+          <input id="file-input" type="file" accept="image/jpeg,image/png,image/webp" hidden>
+        </div>
+        <div class="image-stage" id="image-stage">
+          <div class="image-empty" id="image-empty"><svg viewBox="0 0 64 64" aria-hidden="true"><rect x="8" y="12" width="48" height="40" rx="4"/><circle cx="23" cy="26" r="4"/><path d="m9 46 16-13 10 8 9-7 12 12"/></svg><strong>A photo is the starting point.</strong><span>Choose a JPEG, PNG or WebP to explore locally.</span></div>
+          <canvas id="photo-canvas" hidden tabindex="0" aria-label="Photo editor. Use the cover or crop controls below for keyboard editing." aria-describedby="tool-help"></canvas>
+          <span class="stage-tag" id="stage-tag" hidden>Original photo</span>
+        </div>
+        <div class="editor">
+          <div class="editor-toolbar" role="group" aria-label="Photo editing tools">
+            <div class="tool-group">
+              <button id="cover-tool" class="tool-button" aria-pressed="false" disabled><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="5" y="6" width="14" height="12" rx="1"/><path d="m5 10 4-4m-4 8 8-8m-8 12L17 6m-8 12 10-10m-6 10 6-6m-2 6 2-2"/></svg>Cover</button>
+              <button id="crop-tool" class="tool-button" aria-pressed="false" disabled><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 3v14h14M3 7h14v14"/></svg>Crop</button>
+            </div>
+            <div class="tool-group history-group">
+              <button id="undo-button" class="icon-button" title="Undo last edit" aria-label="Undo last edit" disabled><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m8 5-5 5 5 5M3 10h11a6 6 0 0 1 0 12"/></svg></button>
+              <button id="reset-edits" class="text-button" disabled>Reset edits</button>
+            </div>
+            <div class="view-toggle" role="group" aria-label="Photo view">
+              <button id="original-view" aria-pressed="true" disabled>Original</button>
+              <button id="edited-view" aria-pressed="false" disabled>Edited</button>
+            </div>
+          </div>
+          <div id="tool-options" class="tool-options" hidden>
+            <p id="tool-help">Drag on the photo to select a rectangle, or use a preset.</p>
+            <div class="selection-actions"><button id="road-preset" class="secondary-button" hidden>Cover lower center</button><button id="preset-button" class="secondary-button">Select center</button><button id="apply-tool" class="small-primary" disabled>Apply cover</button><button id="cancel-tool" class="text-button">Done</button></div>
+          </div>
+          <div class="photo-facts">
+            <span id="pixel-note">JPEG, PNG or WebP · up to 10 MiB / 50 MP</span>
+            <span id="edit-count">Edits stay in your browser</span>
+          </div>
+        </div>
+        <div class="metadata-strip">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m12 3 8 3v6c0 5-8 9-8 9s-8-4-8-9V6zM8 12l3 3 5-6"/></svg>
+          <div><strong id="metadata-label">Metadata not checked</strong><span id="metadata-note">Location tags are only one part of the picture.</span></div>
+          <button id="download-button" class="icon-button" aria-label="Download current edit as metadata-free PNG" title="Download edited PNG" disabled><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3v13m-5-5 5 5 5-5M4 17v4h16v-4"/></svg></button>
+        </div>
+        <p id="download-note" class="download-note" role="status" hidden></p>
+      </article>
+
+      <article class="location-panel" aria-label="Location estimate">
+        <div class="panel-heading map-heading">
+          <h2>A point of view</h2>
+          <button id="tiles-button" class="map-toggle" aria-pressed="false" title="External OpenStreetMap tiles share your IP and map area" aria-label="Toggle external street map tiles; shares your IP and map area with OpenStreetMap"><span id="tiles-label">Enable street map</span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 5h12v12M19 5 5 19"/></svg></button>
+        </div>
+        <div class="map-stage">
+          <div id="map" role="img" aria-label="World map. No location estimate revealed."></div>
+          <svg id="map-fallback" viewBox="0 0 720 360" role="img" aria-label="Schematic world overview" hidden>
+            <defs><pattern id="map-grid" width="60" height="60" patternUnits="userSpaceOnUse"><path d="M60 0H0V60" fill="none" stroke="#2b3c55" stroke-width=".7"/></pattern></defs>
+            <rect width="720" height="360" fill="#101e34"/><rect width="720" height="360" fill="url(#map-grid)"/>
+            <g fill="#263b54" stroke="#3d526b" stroke-width="1"><path d="m35 68 45-31 83-8 45 20 27 46-24 19-23-5-26 38-16 23-40-22-10-31-40-17zm162-39 42-15 39 12-14 51-37 19-23-24zm-44 139 44 10 29 34 4 29-32 57-13 20-19-57-18-53zM300 88l30-25 45-13 34-9 101-20 101 24 62 40-26 30-40-5-29 27-30-6-13 42-32-2-35-31-20-10-24 8-15-21-35-2-22 10-16-10-27 8-13-9zm28 42 44-8 27 27 25 29-21 50-25 24-21-13-12-45-23-23zm89 80 11-9 1 25-12 14zm95-51 26 7 11 17 28 5 15 12-43-4-24-17zm64 49 50-14 31 25 3 32-37 6-51-20zm82 58 14-17 4 14-14 18z"/></g>
+            <g id="fallback-pins"></g>
+          </svg>
+          <div class="map-curtain" id="map-curtain"><div class="crosshair" aria-hidden="true"><span></span></div><strong>Every scene leaves clues.</strong><span>The estimate is still hidden.</span></div>
+          <div class="map-bottom"><span id="map-note">Local world map · no external requests</span><span class="north-mark" aria-hidden="true">↑ N</span></div>
+        </div>
+        <div class="result-content">
+          <div id="result-empty" class="result-empty"><h3>What can the pixels reveal?</h3><p>Start with the original. Then cover or crop a detail and compare what changes.</p></div>
+          <div id="results" hidden>
+            <div class="result-kicker" id="result-provenance">Recorded estimate</div>
+            <dl id="coordinate-list" class="coordinate-list"></dl>
+            <div id="distance-result" class="distance-result" hidden></div>
+            <p class="result-caution">A location estimate, not a verified location.</p>
+          </div>
+          <div class="action-row">
+            <button id="analyze-button" class="primary-button" disabled><span id="analyze-label">Reveal estimate</span><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="7"/><path d="M12 2v4m0 12v4M2 12h4m12 0h4"/><circle cx="12" cy="12" r="1"/></svg></button>
+            <button id="truth-button" class="truth-button" hidden>Reveal known location</button>
+          </div>
+          <div id="wait-state" class="wait-state" role="status" hidden><span class="spinner" aria-hidden="true"></span><span id="wait-message">Analyzing · 0s elapsed</span><button id="cancel-request" class="text-button">Cancel</button><button id="continue-evidence" class="text-button" hidden>Continue to evidence</button></div>
+          <p id="action-note" class="action-note" aria-live="polite">Recorded examples show a saved evaluation result alongside a display export.</p>
+        </div>
+        <div class="map-legend" aria-label="Map legend"><span><i class="pin-dot original"></i>Original estimate</span><span><i class="pin-dot edited"></i>Edited</span><span><i class="pin-dot truth"></i>Known location</span></div>
+      </article>
+    </section>
+
+    <section class="examples-section" aria-labelledby="examples-heading">
+      <div class="section-heading"><h2 id="examples-heading">Take another look.</h2><p>Three street scenes. Different clues.</p></div>
+      <div id="example-list" class="example-list"><p class="empty-examples">Loading recorded examples… You can also choose your own photo.</p></div>
+      <p class="manifest-note">The first three examples in manifest order, not a selection of successful predictions.</p>
+    </section>
+
+    <details id="evidence" class="evidence">
+      <summary><span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 20V10m7 10V4m7 16v-7M2 20h20"/></svg>Behind the estimate</span><span class="summary-aside">Measured evidence & limitations <b aria-hidden="true">+</b></span></summary>
+      <div class="evidence-body">
+        <div class="evidence-heading"><h2>A result you can inspect.</h2><p>OSV-5M development subset · not an official benchmark</p></div>
+        <div id="report-content"><p>The evaluation report is not available yet.</p></div>
+        <p id="historical-result" class="report-scope">Reveal a recorded example to inspect its historical evaluation result.</p>
+        <p id="live-settings" class="report-scope">No live pixel analysis in this story yet.</p>
+        <div class="baseline-control"><label><input id="baseline-toggle" type="checkbox" disabled> Show the recorded baseline estimate on the map</label><p id="baseline-note">Reveal an example’s estimate first. The baseline is a model comparison, not a known location.</p></div>
+        <div class="evidence-notes">
+          <div><h3>What this does not tell you</h3><p>This model is built around street photos. It is not a GPS replacement. Distance from a known location measures error, not confidence. A changed estimate is not proof of privacy; visual clues can remain after editing.</p></div>
+          <div><h3>What leaves your browser</h3><p>Metadata inspection, covers, crops and downloads happen locally. Live analysis sends only re-encoded pixels to server memory, without upload storage. Street map tiles are optional: enabling them contacts OpenStreetMap and reveals your IP and map area.</p></div>
+          <div><h3>Recorded versus live pixels</h3><p>Examples are quality-90 JPEG display exports of evaluation images. Historical predictions were made on different source pixels. Live edit comparisons reanalyze the normalized display original and its edit, and require matching model settings. A chosen cover is an illustration, not aggregate evidence.</p><p>Research: Chiikabu Labs Chipoint v2, SigLIP2 / OpenCLIP, Meta DINOv3 and OSV-5M.</p><a href="/vendor/ATTRIBUTION.txt">Frontend libraries & map attribution</a></div>
+        </div>
+      </div>
+    </details>
+    <footer class="site-footer"><span>Less in the frame. Still a place in the world.</span><span>Offgrid / a location-exposure study</span></footer>
+  </main>
+  <dialog id="evidence-dialog" class="evidence-dialog" aria-labelledby="evidence-dialog-title">
+    <div class="dialog-heading"><h2 id="evidence-dialog-title">Behind the estimate</h2><button id="close-evidence" class="icon-button" aria-label="Close evidence">×</button></div>
+    <p id="evidence-wait-note" class="dialog-note" hidden>Stopped waiting for inference. The server may still finish; no unfinished edit comparison is shown.</p>
+    <div id="evidence-slot"></div>
+  </dialog>
+  <dialog id="takeaway-dialog" aria-labelledby="takeaway-title">
+    <div class="dialog-heading"><span class="dialog-brand">offgrid.</span><button id="close-takeaway" class="icon-button" aria-label="Close takeaway">×</button></div>
+    <h2 id="takeaway-title">Less detail is not a guarantee.</h2>
+    <p class="dialog-note">Removing metadata removes one source of location information. Visual clues can remain in the pixels.</p>
+    <p class="dialog-note">A moved estimate is a changed model answer—not proof of privacy, and not necessarily a more accurate answer.</p>
+    <p class="dialog-note">This is a street-photo study, not a GPS replacement. Inspect the evidence before generalizing from one photo.</p>
+    <button id="finish-takeaway" class="primary-button">Back to the photo</button>
+  </dialog>
+  <dialog id="how-dialog" aria-labelledby="how-title">
+    <div class="dialog-heading"><span class="dialog-brand">offgrid.</span><button id="close-how" class="icon-button" aria-label="Close how it works">×</button></div>
+    <h2 id="how-title">Look. Reveal. Rethink.</h2>
+    <ol class="how-steps"><li><strong>Start with a photo.</strong><p>Use a recorded street scene, or choose an image you have permission to analyze. Original metadata is inspected locally; GPS tags are not used for inference.</p></li><li><strong>Reveal an estimate.</strong><p>Examples show a saved result, clearly marked as recorded. Your own photos require live inference. A separate reveal shows the known location of an example.</p></li><li><strong>Change what’s visible.</strong><p>Cover a rectangular detail or apply a crop. With live inference, test the edited pixels and compare estimates. Without it, you can still edit and download a metadata-free PNG.</p></li></ol>
+    <p class="dialog-note">An estimate can be wrong. Removing metadata does not remove visual location clues.</p>
+    <button id="start-button" class="primary-button">Try a photo</button>
+  </dialog>
+  <div id="announcer" class="sr-only" role="status" aria-live="polite"></div>
+  <noscript><p class="notice">Offgrid needs JavaScript for local image editing and location estimates. Enable JavaScript and reload.</p></noscript>
+</body>
+</html>

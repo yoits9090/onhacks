@@ -1,0 +1,288 @@
+[
+  {
+    "file": "01-forest-road.jpg",
+    "kind": "recorded evaluation display export",
+    "source": "OSV-5M via project experiment-v2",
+    "image_id": "889133601646428",
+    "known_location": {
+      "lat": 55.103254158615,
+      "lon": 59.913876999678
+    },
+    "google_maps": "https://www.google.com/maps/search/?api=1&query=55.103254158615,59.913876999678",
+    "note": "Use the matching in-app thumbnail to reveal saved results. Dragging this file treats it as a new live upload with unknown truth. Display JPEG is not the original evaluation input.",
+    "sha256": "e2ed26539f5862da41dc4f327885526c24876b3554dc0c07d6677cb39048a680"
+  },
+  {
+    "file": "02-open-road.jpg",
+    "kind": "recorded evaluation display export",
+    "source": "OSV-5M via project experiment-v2",
+    "image_id": "144906930925908",
+    "known_location": {
+      "lat": 20.874935297747,
+      "lon": -88.171098199204
+    },
+    "google_maps": "https://www.google.com/maps/search/?api=1&query=20.874935297747,-88.171098199204",
+    "note": "Use the matching in-app thumbnail to reveal saved results. Dragging this file treats it as a new live upload with unknown truth. Display JPEG is not the original evaluation input.",
+    "sha256": "4256027963ecf649933e7bb54c70c593e6ddadf3535a132ac7c66f650e054a9e"
+  },
+  {
+    "file": "03-winding-road.jpg",
+    "kind": "recorded evaluation display export",
+    "source": "OSV-5M via project experiment-v2",
+    "image_id": "939483846864661",
+    "known_location": {
+      "lat": 41.852162483849,
+      "lon": 8.8576308483313
+    },
+    "google_maps": "https://www.google.com/maps/search/?api=1&query=41.852162483849,8.8576308483313",
+    "note": "Use the matching in-app thumbnail to reveal saved results. Dragging this file treats it as a new live upload with unknown truth. Display JPEG is not the original evaluation input.",
+    "sha256": "8d27457ba4e34c2c4af9d2b781cdf433562dc29a5a5a65b41494cd833c868420"
+  },
+  {
+    "file": "04-forest-road-covered.png",
+    "kind": "selected edit of 01-forest-road",
+    "source": "artifacts/offgrid-final/edited-input.png",
+    "note": "Rehearsed opaque road cover. Demonstration only, not an evaluation result or privacy guarantee. Compare against freshly analyzed original, not historical recorded prediction.",
+    "sha256": "fcef9a1a10529aee0ab23227ee1366de80bbe6028611f531b426026d1bb9e406"
+  },
+  {
+    "file": "05-canal-street.jpg",
+    "kind": "untested public street photo; live inference required",
+    "source": "https://commons.wikimedia.org/wiki/File:Reguliersgracht,_Amsterdam.jpg",
+    "download_url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/5/5f/Reguliersgracht%2C_Amsterdam.jpg/1280px-Reguliersgracht%2C_Amsterdam.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+    "author": "Marco Ober",
+    "license": "CC BY-SA 4.0",
+    "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
+    "changes": "Resized and re-encoded as JPEG; EXIF/GPS metadata removed. No crop or cover. Adapted image remains CC BY-SA 4.0.",
+    "note": "Place named by source only; no model result or precise ground truth is supplied to the app. Accuracy has not been evaluated.",
+    "sha256": "820cc4c6063e2a2e822afdc32f45c846be7e196d23078748bf2138737fbb1640"
+  },
+  {
+    "file": "06-pedestrian-street.jpg",
+    "kind": "untested public street photo; live inference required",
+    "source": "https://commons.wikimedia.org/wiki/File:Pedestrian_road_with_pavements_and_paper_umbrellas,_Higashiyama-ku,_Kyoto,_Japan,_early_morning.jpg",
+    "download_url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/6/66/Pedestrian_road_with_pavements_and_paper_umbrellas%2C_Higashiyama-ku%2C_Kyoto%2C_Japan%2C_early_morning.jpg/1280px-Pedestrian_road_with_pavements_and_paper_umbrellas%2C_Higashiyama-ku%2C_Kyoto%2C_Japan%2C_early_morning.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+    "author": "Basile Morin",
+    "license": "CC BY-SA 4.0",
+    "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
+    "changes": "Resized and re-encoded as JPEG; EXIF/GPS metadata removed. No crop or cover. Adapted image remains CC BY-SA 4.0.",
+    "note": "Place named by source only; no model result or precise ground truth is supplied to the app. Accuracy has not been evaluated.",
+    "sha256": "e6a8099301f81e7e4e8cf133fa5fae3efdf6d87029cc2ee2c75595e00438f2be"
+  },
+  {
+    "file": "07-lisbon-tram.jpg",
+    "kind": "untested public street photo; live inference required",
+    "place_described_by_source": "lisbon",
+    "source": "https://commons.wikimedia.org/wiki/File:Tram_28_Lisbon_Portuguese.jpg",
+    "source_title": "File:Tram 28 Lisbon Portuguese.jpg",
+    "download_url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/6/62/Tram_28_Lisbon_Portuguese.jpg/1280px-Tram_28_Lisbon_Portuguese.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+    "author": "\u0412\u0432\u043b\u0430\u0441\u0435\u043d\u043a\u043e",
+    "license": "CC BY-SA 4.0",
+    "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
+    "changes": "Resized to at most 1280 pixels on the longest edge, JPEG re-encoded; EXIF/GPS metadata removed. No crop or cover.",
+    "note": "Location is a source description, not verified model output or precise query ground truth. No inference has been run on this photo.",
+    "sha256": "5458c705e6a37720123242621d76ee997c5a76bf82f1192aa4f610d526c5c9e3",
+    "dimensions": [
+      1280,
+      802
+    ]
+  },
+  {
+    "file": "08-san-francisco-crosswalk.jpg",
+    "kind": "untested public street photo; live inference required",
+    "place_described_by_source": "san-francisco",
+    "source": "https://commons.wikimedia.org/wiki/File:Crosswalk_of_Market_at_Third,_San_Francisco.jpg",
+    "source_title": "File:Crosswalk of Market at Third, San Francisco.jpg",
+    "download_url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/b/b3/Crosswalk_of_Market_at_Third%2C_San_Francisco.jpg/1280px-Crosswalk_of_Market_at_Third%2C_San_Francisco.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+    "author": "Dllu",
+    "license": "CC BY-SA 4.0",
+    "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
+    "changes": "Resized to at most 1280 pixels on the longest edge, JPEG re-encoded; EXIF/GPS metadata removed. No crop or cover.",
+    "note": "Location is a source description, not verified model output or precise query ground truth. No inference has been run on this photo.",
+    "sha256": "ebed08463f65575cc077184e7e62e47b3fc3b5fbf718a080fa4eca7730e14113",
+    "dimensions": [
+      1280,
+      802
+    ]
+  },
+  {
+    "file": "09-toronto-street.jpg",
+    "kind": "untested public street photo; live inference required",
+    "place_described_by_source": "toronto",
+    "source": "https://commons.wikimedia.org/wiki/File:Queen_Street_and_University_Avenue,_September_30_2024.jpg",
+    "source_title": "File:Queen Street and University Avenue, September 30 2024.jpg",
+    "download_url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/5/5e/Queen_Street_and_University_Avenue%2C_September_30_2024.jpg/1280px-Queen_Street_and_University_Avenue%2C_September_30_2024.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+    "author": "Dillan Payne",
+    "license": "CC BY-SA 4.0",
+    "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
+    "changes": "Resized to at most 1280 pixels on the longest edge, JPEG re-encoded; EXIF/GPS metadata removed. No crop or cover.",
+    "note": "Location is a source description, not verified model output or precise query ground truth. No inference has been run on this photo.",
+    "sha256": "de03d3824bc7b1a7b3c15756915349a67a274e63cbfa06820a3c0e302cb81b83",
+    "dimensions": [
+      1280,
+      853
+    ]
+  },
+  {
+    "file": "10-paris-colorful-street.jpg",
+    "kind": "untested public street photo; live inference required",
+    "place_described_by_source": "paris",
+    "source": "https://commons.wikimedia.org/wiki/File:Rue_Cr%C3%A9mieux_in_July_2022_2.jpg",
+    "source_title": "File:Rue Cr\u00e9mieux in July 2022 2.jpg",
+    "download_url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/4/48/Rue_Cr%C3%A9mieux_in_July_2022_2.jpg/1280px-Rue_Cr%C3%A9mieux_in_July_2022_2.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+    "author": "DiscoA340",
+    "license": "CC BY-SA 4.0",
+    "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
+    "changes": "Resized to at most 1280 pixels on the longest edge, JPEG re-encoded; EXIF/GPS metadata removed. No crop or cover.",
+    "note": "Location is a source description, not verified model output or precise query ground truth. No inference has been run on this photo.",
+    "sha256": "f7d857e5325f520b9b8798fb21f777c72c53863c65709927d8dbe56107ee1bc8",
+    "dimensions": [
+      1280,
+      960
+    ]
+  },
+  {
+    "file": "11-london-houses.jpg",
+    "kind": "untested public street photo; live inference required",
+    "place_described_by_source": "london",
+    "source": "https://commons.wikimedia.org/wiki/File:11-14,_Barton_Street_1.jpg",
+    "source_title": "File:11-14, Barton Street 1.jpg",
+    "download_url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/b/bb/11-14%2C_Barton_Street_1.jpg/1280px-11-14%2C_Barton_Street_1.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+    "author": "Richard Symonds",
+    "license": "CC BY-SA 4.0",
+    "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
+    "changes": "Resized to at most 1280 pixels on the longest edge, JPEG re-encoded; EXIF/GPS metadata removed. No crop or cover.",
+    "note": "Location is a source description, not verified model output or precise query ground truth. No inference has been run on this photo.",
+    "sha256": "5244b76758ca167514dbec36fe1c7db509eb56becfdcffa4396f5d38f2ea45f8",
+    "dimensions": [
+      1280,
+      960
+    ]
+  },
+  {
+    "file": "12-seoul-hanok-street.jpg",
+    "kind": "untested public street photo; live inference required",
+    "place_described_by_source": "seoul",
+    "source": "https://commons.wikimedia.org/wiki/File:Bukchon-ro_11-gil_street_with_hanok_houses_in_Bukchon_Hanok_Village_Seoul.jpg",
+    "source_title": "File:Bukchon-ro 11-gil street with hanok houses in Bukchon Hanok Village Seoul.jpg",
+    "download_url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/b/b6/Bukchon-ro_11-gil_street_with_hanok_houses_in_Bukchon_Hanok_Village_Seoul.jpg/1280px-Bukchon-ro_11-gil_street_with_hanok_houses_in_Bukchon_Hanok_Village_Seoul.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+    "author": "Basile Morin",
+    "license": "CC BY-SA 4.0",
+    "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
+    "changes": "Resized to at most 1280 pixels on the longest edge, JPEG re-encoded; EXIF/GPS metadata removed. No crop or cover.",
+    "note": "Location is a source description, not verified model output or precise query ground truth. No inference has been run on this photo.",
+    "sha256": "39da0b24e30e91139c056aa1daa7baf6bb314eb69537098524efd0edb6cf645d",
+    "dimensions": [
+      1280,
+      822
+    ]
+  },
+  {
+    "file": "13-singapore-chinatown.jpg",
+    "kind": "untested public street photo; live inference required",
+    "place_described_by_source": "singapore",
+    "source": "https://commons.wikimedia.org/wiki/File:Pagoda_Street_Chinatown_Singapore.jpg",
+    "source_title": "File:Pagoda Street Chinatown Singapore.jpg",
+    "download_url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/0/08/Pagoda_Street_Chinatown_Singapore.jpg/1280px-Pagoda_Street_Chinatown_Singapore.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+    "author": "kallerna",
+    "license": "CC BY-SA 4.0",
+    "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
+    "changes": "Resized to at most 1280 pixels on the longest edge, JPEG re-encoded; EXIF/GPS metadata removed. No crop or cover.",
+    "note": "Location is a source description, not verified model output or precise query ground truth. No inference has been run on this photo.",
+    "sha256": "7983319ea886bb4fe66693c7fd45951baf5aa2f7b9c378ab2ef50dc84b892f75",
+    "dimensions": [
+      1280,
+      853
+    ]
+  },
+  {
+    "file": "14-new-york-brownstones.jpg",
+    "kind": "untested public street photo; live inference required",
+    "place_described_by_source": "new-york",
+    "source": "https://commons.wikimedia.org/wiki/File:Harlem,_New_York_brownstones.jpg",
+    "source_title": "File:Harlem, New York brownstones.jpg",
+    "download_url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/8/85/Harlem%2C_New_York_brownstones.jpg/1280px-Harlem%2C_New_York_brownstones.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+    "author": "Paul Lowry",
+    "license": "CC BY 4.0",
+    "license_url": "https://creativecommons.org/licenses/by/4.0",
+    "changes": "Resized to at most 1280 pixels on the longest edge, JPEG re-encoded; EXIF/GPS metadata removed. No crop or cover.",
+    "note": "Location is a source description, not verified model output or precise query ground truth. No inference has been run on this photo.",
+    "sha256": "27a1648082e606abd2b7eca5170ee0ff81f2d90846da877574b60791b07b3424",
+    "dimensions": [
+      1280,
+      1057
+    ]
+  },
+  {
+    "file": "15-sydney-terraces.jpg",
+    "kind": "untested public street photo; live inference required",
+    "place_described_by_source": "sydney",
+    "source": "https://commons.wikimedia.org/wiki/File:High_Street,_Millers_Point_03.jpg",
+    "source_title": "File:High Street, Millers Point 03.jpg",
+    "download_url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/2/28/High_Street%2C_Millers_Point_03.jpg/1280px-High_Street%2C_Millers_Point_03.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+    "author": "Rangasyd",
+    "license": "CC BY-SA 4.0",
+    "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
+    "changes": "Resized to at most 1280 pixels on the longest edge, JPEG re-encoded; EXIF/GPS metadata removed. No crop or cover.",
+    "note": "Location is a source description, not verified model output or precise query ground truth. No inference has been run on this photo.",
+    "sha256": "9b229a815ab6a25086df2d4e1a2c066375d988c2ef40b49b922477b18f858f81",
+    "dimensions": [
+      1280,
+      805
+    ]
+  },
+  {
+    "file": "16-cape-town-colorful-street.jpg",
+    "kind": "untested public street photo; live inference required",
+    "place_described_by_source": "cape-town",
+    "source": "https://commons.wikimedia.org/wiki/File:Cape_Town_(ZA),_Wale_Street_--_2024_--_3544.jpg",
+    "source_title": "File:Cape Town (ZA), Wale Street -- 2024 -- 3544.jpg",
+    "download_url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/b/b2/Cape_Town_%28ZA%29%2C_Wale_Street_--_2024_--_3544.jpg/1280px-Cape_Town_%28ZA%29%2C_Wale_Street_--_2024_--_3544.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+    "author": "Dietmar Rabich",
+    "license": "CC BY-SA 4.0",
+    "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
+    "changes": "Resized to at most 1280 pixels on the longest edge, JPEG re-encoded; EXIF/GPS metadata removed. No crop or cover.",
+    "note": "Location is a source description, not verified model output or precise query ground truth. No inference has been run on this photo.",
+    "sha256": "ab2f1d322f89e2f1c6037a05daa31beec2468d7e30d939469990abaabf36c945",
+    "dimensions": [
+      1280,
+      720
+    ]
+  },
+  {
+    "file": "17-istanbul-beyoglu.jpg",
+    "kind": "untested public street photo; live inference required",
+    "place_described_by_source": "istanbul",
+    "source": "https://commons.wikimedia.org/wiki/File:Nostalgia.-Beyo%C4%9Flu-%C4%B0stanbul_-_panoramio.jpg",
+    "source_title": "File:Nostalgia.-Beyo\u011flu-\u0130stanbul - panoramio.jpg",
+    "download_url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/5/57/Nostalgia.-Beyo%C4%9Flu-%C4%B0stanbul_-_panoramio.jpg/1280px-Nostalgia.-Beyo%C4%9Flu-%C4%B0stanbul_-_panoramio.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+    "author": "Haluk Comertel",
+    "license": "CC BY 3.0",
+    "license_url": "https://creativecommons.org/licenses/by/3.0",
+    "changes": "Resized to at most 1280 pixels on the longest edge, JPEG re-encoded; EXIF/GPS metadata removed. No crop or cover.",
+    "note": "Location is a source description, not verified model output or precise query ground truth. No inference has been run on this photo.",
+    "sha256": "f09a8006d00fd1bf0771048bf2b83d02f85b434d4b392851b9183ee345e3dc9d",
+    "dimensions": [
+      1280,
+      773
+    ]
+  },
+  {
+    "file": "18-copenhagen-waterfront.jpg",
+    "kind": "untested public street photo; live inference required",
+    "place_described_by_source": "copenhagen",
+    "source": "https://commons.wikimedia.org/wiki/File:2018_-_Nyhavn_on_sunset.jpg",
+    "source_title": "File:2018 - Nyhavn on sunset.jpg",
+    "download_url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/8/84/2018_-_Nyhavn_on_sunset.jpg/1280px-2018_-_Nyhavn_on_sunset.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+    "author": "Moahim",
+    "license": "CC BY-SA 4.0",
+    "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
+    "changes": "Resized to at most 1280 pixels on the longest edge, JPEG re-encoded; EXIF/GPS metadata removed. No crop or cover.",
+    "note": "Location is a source description, not verified model output or precise query ground truth. No inference has been run on this photo.",
+    "sha256": "a46df8a2ab0f24a6405d0febf332de0a7ff64df19e9f8534570b8644bfcab089",
+    "dimensions": [
+      1280,
+      830
+    ]
+  }
+]

@@ -1,0 +1,130 @@
+{
+  "imageinfo": {
+    "size": 8288546,
+    "width": 3707,
+    "height": 3060,
+    "thumburl": "https://thumb.wikimedia.org/wikipedia/commons/thumb/8/85/Harlem%2C_New_York_brownstones.jpg/1280px-Harlem%2C_New_York_brownstones.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+    "thumbwidth": 1280,
+    "thumbheight": 1057,
+    "responsiveUrls": {
+      "2": "https://upload.wikimedia.org/wikipedia/commons/8/85/Harlem%2C_New_York_brownstones.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail_unscaled"
+    },
+    "thumbattribs": {
+      "src": "https://thumb.wikimedia.org/wikipedia/commons/thumb/8/85/Harlem%2C_New_York_brownstones.jpg/1280px-Harlem%2C_New_York_brownstones.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+      "decoding": "async",
+      "loading": "lazy",
+      "width": 1280,
+      "height": 1057,
+      "srcset": "https://upload.wikimedia.org/wikipedia/commons/8/85/Harlem%2C_New_York_brownstones.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail_unscaled 2x"
+    },
+    "url": "https://upload.wikimedia.org/wikipedia/commons/8/85/Harlem%2C_New_York_brownstones.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+    "descriptionurl": "https://commons.wikimedia.org/wiki/File:Harlem,_New_York_brownstones.jpg",
+    "descriptionshorturl": "https://commons.wikimedia.org/w/index.php?curid=194105768",
+    "extmetadata": {
+      "DateTime": {
+        "value": "2026-06-18 21:21:06",
+        "source": "mediawiki-metadata",
+        "hidden": ""
+      },
+      "ObjectName": {
+        "value": "Harlem, New York brownstones",
+        "source": "mediawiki-metadata"
+      },
+      "CommonsMetadataExtension": {
+        "value": 1.2,
+        "source": "extension",
+        "hidden": ""
+      },
+      "Categories": {
+        "value": "Files with coordinates missing SDC location of creation|Flickr images reviewed by FlickreviewR 2|Outside stairs in New York City|Buildings in Harlem, Manhattan|Brownstone buildings|Row houses in Manhattan|New York City photographs taken on 2026-05-15|Row houses in New York City photographed in 2026|May 2026 in Harlem, Manhattan",
+        "source": "commons-categories",
+        "hidden": ""
+      },
+      "Assessments": {
+        "value": "",
+        "source": "commons-categories",
+        "hidden": ""
+      },
+      "GPSLatitude": {
+        "value": "40.808640",
+        "source": "commons-desc-page"
+      },
+      "GPSLongitude": {
+        "value": "-73.955460",
+        "source": "commons-desc-page"
+      },
+      "GPSMapDatum": {
+        "value": "WGS-84",
+        "source": "commons-desc-page",
+        "hidden": ""
+      },
+      "ImageDescription": {
+        "value": "Harlem, New York brownstones.",
+        "source": "commons-desc-page"
+      },
+      "DateTimeOriginal": {
+        "value": "2026-05-15 11:39:08",
+        "source": "commons-desc-page"
+      },
+      "Credit": {
+        "value": "<a rel=\"nofollow\" class=\"external free\" href=\"https://www.flickr.com/photos/paul_lowry/55271020882/\">https://www.flickr.com/photos/paul_lowry/55271020882/</a>",
+        "source": "commons-desc-page"
+      },
+      "Artist": {
+        "value": "Paul Lowry",
+        "source": "commons-desc-page"
+      },
+      "LicenseShortName": {
+        "value": "CC BY 4.0",
+        "source": "commons-desc-page",
+        "hidden": ""
+      },
+      "UsageTerms": {
+        "value": "Creative Commons Attribution 4.0",
+        "source": "commons-desc-page"
+      },
+      "AttributionRequired": {
+        "value": "true",
+        "source": "commons-desc-page",
+        "hidden": ""
+      },
+      "LicenseUrl": {
+        "value": "https://creativecommons.org/licenses/by/4.0",
+        "source": "commons-desc-page"
+      },
+      "Copyrighted": {
+        "value": "True",
+        "source": "commons-desc-page",
+        "hidden": ""
+      },
+      "Restrictions": {
+        "value": "",
+        "source": "commons-desc-page",
+        "hidden": ""
+      },
+      "License": {
+        "value": "cc-by-4.0",
+        "source": "commons-templates",
+        "hidden": ""
+      }
+    }
+  },
+  "record": {
+    "file": "14-new-york-brownstones.jpg",
+    "kind": "untested public street photo; live inference required",
+    "place_described_by_source": "new-york",
+    "source": "https://commons.wikimedia.org/wiki/File:Harlem,_New_York_brownstones.jpg",
+    "source_title": "File:Harlem, New York brownstones.jpg",
+    "download_url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/8/85/Harlem%2C_New_York_brownstones.jpg/1280px-Harlem%2C_New_York_brownstones.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+    "author": "Paul Lowry",
+    "license": "CC BY 4.0",
+    "license_url": "https://creativecommons.org/licenses/by/4.0",
+    "changes": "Resized to at most 1280 pixels on the longest edge, JPEG re-encoded; EXIF/GPS metadata removed. No crop or cover.",
+    "note": "Location is a source description, not verified model output or precise query ground truth. No inference has been run on this photo.",
+    "sha256": "27a1648082e606abd2b7eca5170ee0ff81f2d90846da877574b60791b07b3424",
+    "dimensions": [
+      1280,
+      1057
+    ]
+  }
+}
