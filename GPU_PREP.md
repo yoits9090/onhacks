@@ -163,6 +163,23 @@ never persisted); without CUDA it fails explicitly rather than pretending.
 The output is a **consensus calibration** comparison, not encoder training,
 and claims no accuracy beyond the measured report.
 
+Point the demo at a different run directory with `--run-dir`, resolved
+relative to `--root` unless absolute:
+
+```bash
+.venv/bin/python scripts/serve_demo.py --run-dir artifacts/experiment-v2
+```
+
+A second bounded calibration attempt is specified in
+[`FUSION_EXPERIMENT.md`](FUSION_EXPERIMENT.md) (`fusion_config.json`):
+relative tower weights selected on the original tuning cohort only, then
+evaluated once on a **fresh, sequence-disjoint held-out cohort** (pinned
+OSV-5M `test.csv` + `images/test/01.zip`; all 4,000 original sequences
+excluded). It writes
+separate `artifacts/experiment-v2/` outputs — v1 results stay immutable —
+and any accepted deployment still reports calibration, not encoder
+training.
+
 ## Asset / storage budget
 
 - Street galleries: ~15 GB (3 × ~5 GB fp16 + ~39 MB coords).

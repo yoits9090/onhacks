@@ -1,0 +1,37 @@
+{
+  "accept_candidate": false,
+  "baseline": {
+    "acc@1km": 0.5,
+    "acc@200km": 65.64999999999999,
+    "acc@2500km": 89.64999999999999,
+    "acc@25km": 34.949999999999996,
+    "acc@750km": 79.65,
+    "geoscore": 3952.294717992195,
+    "mean_km": 1121.3544903413508,
+    "median_km": 61.835610628550455
+  },
+  "decision": "retain baseline",
+  "evaluation_queries": 2000,
+  "evaluation_sequences": 2000,
+  "failed_images": 0,
+  "mean_geoscore_delta": 4.549792983116735,
+  "paired_sequence_bootstrap_95pct": [
+    -0.07545537926404411,
+    9.4142419997964
+  ],
+  "prediction_config_sha256": "6d54516f1a5f7af2a3171b19ea7292cc75b56849790b0b6993356b8f4c386387",
+  "predictions_sha256": "a1ae2251be96320d4c9d2c1ef6f4fb2ad331267aa26c627500dc52e481eb32a3",
+  "scope": "OSV-5M archive-00 development subset; not official benchmark",
+  "selected": {
+    "acc@1km": 0.2,
+    "acc@200km": 65.4,
+    "acc@2500km": 89.85,
+    "acc@25km": 33.85,
+    "acc@750km": 79.95,
+    "geoscore": 3956.8445109753116,
+    "mean_km": 1119.07988335286,
+    "median_km": 65.29122523762085
+  },
+  "selected_top_n": 5,
+  "selection_sha256": "0f23f0bea5785ede32078faa53e1c60ca70c73f32881113db27653d659c4272b"
+}

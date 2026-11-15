@@ -9,6 +9,7 @@ import numpy as np
 import torch
 
 from . import baseline
+from .calibration import weighted_fuse_pools
 
 
 class StreetArm:
@@ -73,12 +74,13 @@ class StreetArm:
             pools[tag] = self.galleries[tag].topk(p, k=k)
         return pools
 
-    def predict(self, images, *, top_n=10):
+    def predict(self, images, *, top_n=10, tower_weights=None):
         """images: list[PIL.Image] -> (B,2) float64 array of (lat, lon).
 
-        Per image: baseline.fuse_pools over each tower's top-k ids/scores
-        (equal weights, keep=64), then baseline.consensus over the shared
-        coords with the given top_n (10 = published demo baseline).
+        Per image: fuse each tower's top-k ids/scores — baseline.fuse_pools
+        (equal weights) unless tower_weights={tag: float} selects
+        calibration.weighted_fuse_pools — then baseline.consensus over the
+        shared coords with the given top_n (10 = published demo baseline).
         Output is exactly as meaningful as the gallery.
         """
         pools = self.retrieve(images, k=self.k)
@@ -89,7 +91,11 @@ class StreetArm:
                 tag: (ids[b].numpy(), sims[b].numpy())
                 for tag, (sims, ids) in pools.items()
             }
-            fused_ids, fused_scores = baseline.fuse_pools(fused_in)
+            if tower_weights is None:
+                fused_ids, fused_scores = baseline.fuse_pools(fused_in)
+            else:
+                fused_ids, fused_scores = weighted_fuse_pools(
+                    fused_in, tower_weights)
             out[b] = baseline.consensus(self.coords[fused_ids], fused_scores,
                                         top_n=top_n)
         return out

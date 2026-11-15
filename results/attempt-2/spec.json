@@ -1,0 +1,43 @@
+{
+  "anchor_tower": "so400m256",
+  "archive_file": "images/test/01.zip",
+  "base_run": "artifacts/experiment-v1",
+  "baseline_top_n": 10,
+  "batch_size": 16,
+  "bootstrap_replicates": 10000,
+  "bootstrap_seed": 1794762600,
+  "candidate_top_n": [
+    10,
+    5,
+    20,
+    64
+  ],
+  "dataset_repo": "osv5m/osv5m",
+  "dataset_revision": "cff33609b56b54d8743b7ee7a416eb8433e9a681",
+  "deadline_utc": "2026-11-15T21:00:00+00:00",
+  "evaluation_sequence_counts": [
+    2000,
+    1000
+  ],
+  "image_salt": "chipoint-image-v1:",
+  "max_worker_minutes": 90,
+  "metadata_file": "test.csv",
+  "model_revision": "a150120cd968d48310d092caf26854f109c90b51",
+  "name": "chipoint-fusion-calibration-v2",
+  "relative_tower_weights": [
+    1.0,
+    0.5,
+    2.0
+  ],
+  "retrieval_k": 200,
+  "sample_salt": "chipoint-fusion-v2-evaluation:",
+  "schema": 1,
+  "selection_guard": "tuning Acc@25km must not decline versus equal-weight top-10 baseline",
+  "selection_objective": "maximum tuning mean GeoScore, ties prefer baseline then enumeration order",
+  "split_salt": "chipoint-v1:",
+  "towers": [
+    "so400m256",
+    "gopt",
+    "dinov3"
+  ]
+}

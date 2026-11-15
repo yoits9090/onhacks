@@ -1,0 +1,12 @@
+{
+  "verified": true,
+  "evaluation_queries": 2000,
+  "all_retrieval_chunk_hashes_match": true,
+  "paired_mean_geoscore_delta": 4.549792983116735,
+  "paired_95pct_ci": [
+    -0.07545537926404432,
+    9.4142419997964
+  ],
+  "accept_candidate": false,
+  "checks": "independent vector-angle distances; all metrics; fresh bootstrap replay; IDs/sequences; tuning selection; artifact hashes"
+}

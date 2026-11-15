@@ -131,7 +131,7 @@
     <h2>Baseline vs selected — frozen report</h2>
     <div id="reportBox"><div class="pane"><div class="empty"
       style="color:var(--muted)">Waiting for experiment artifacts
-      (artifacts/experiment-v1/report.json). The page updates on refresh.</div></div></div>
+      (report.json in the active run directory). The page updates on refresh.</div></div></div>
   </section>
 
   <section>
@@ -207,10 +207,17 @@ function fmtMetric(key, v){
   const unit=(METRICS.find(m=>m[0]===key)||[])[2];
   return fmt(v, key==='geoscore'?2:1)+(unit==='%'?'%':unit?(' '+unit):'');
 }
+function weightsLabel(tw){
+  if(!tw||typeof tw!=='object') return '';
+  const keys=Object.keys(tw).sort();
+  if(!keys.length) return '';
+  return ' · weights '+keys.map(k=>esc(k)+'='+esc(String(tw[k]))).join(', ');
+}
 function renderReport(){
   const r = state.status.report, pc = state.status.prediction_config;
   if(!r){ $('reportBox').innerHTML='<div class="pane"><div class="empty" style="color:var(--muted)">'
-    +'Waiting for artifacts/experiment-v1/report.json — refresh after the experiment finishes.</div></div>'; return; }
+    +'Waiting for report.json in '+esc(state.status.run_dir||'the run directory')
+    +' — refresh after the experiment finishes.</div></div>'; return; }
   const b=r.baseline||{}, s=r.selected||{};
   let h='<div class="pane fade"><div style="overflow-x:auto"><table><thead><tr>'
     +'<th>metric</th><th>baseline</th><th>selected</th></tr></thead><tbody>';
@@ -227,7 +234,7 @@ function renderReport(){
     +'<span>decision</span><b>'+esc(r.decision||'—')+'</b>'
     +'<span>accept candidate</span><b>'+(r.accept_candidate===true?'yes':r.accept_candidate===false?'no':'—')+'</b>'
     +'</div>';
-  if(pc) h+='<div class="note" style="margin-top:8px">Deployed prediction_config: top_n='+esc(pc.top_n)+' ('+esc(pc.kind||'')+').</div>';
+  if(pc) h+='<div class="note" style="margin-top:8px">Deployed prediction_config: top_n='+esc(pc.top_n)+' ('+esc(pc.kind||'')+')'+weightsLabel(pc.tower_weights)+'.</div>';
   else h+='<div class="note" style="margin-top:8px">No prediction_config.json yet — live fallback is the uncalibrated baseline (top_n 10).</div>';
   h+='</div>';
   $('reportBox').innerHTML=h;
@@ -295,10 +302,10 @@ function drawMap(e){
 
 $('uploadBtn').onclick=async()=>{
   const f=$('fileInput').files[0]; if(!f)return;
-  const fd=new FormData(); fd.append('file',f);
   $('predictResult').innerHTML='<div class="note">predicting…</div>';
   try{
-    const r=await fetch('/api/predict',{method:'POST',body:fd});
+    const r=await fetch('/api/predict',{method:'POST',body:f,
+      headers:{'Content-Type':f.type||'application/octet-stream'}});
     const j=await r.json();
     if(!r.ok) throw new Error(j.detail||('HTTP '+r.status));
     // Live query replaces whatever was shown: uploaded image, no recorded
@@ -311,11 +318,11 @@ $('uploadBtn').onclick=async()=>{
     $('imgBox').innerHTML='<img src="'+state.objectUrl+'" alt="uploaded street view">';
     $('imgMeta').innerHTML=
       '<span>mode</span><b>live inference</b>'
-      +'<span>config</span><b>'+esc(j.variant)+' · top_n '+esc(j.top_n)+(j.calibrated?'':' · not calibrated')+'</b>'
+      +'<span>config</span><b>'+esc(j.variant)+' · top_n '+esc(j.top_n)+weightsLabel(j.tower_weights)+(j.calibrated?'':' · not calibrated')+'</b>'
       +'<span>note</span><b>no ground truth for uploads</b>';
     $('predictResult').innerHTML='<div class="pane" style="margin-top:10px"><div class="kv">'
       +'<span>predicted</span><b>'+fmt(j.lat)+', '+fmt(j.lon)+'</b>'
-      +'<span>config</span><b>'+esc(j.variant)+' · top_n '+esc(j.top_n)+(j.calibrated?'':' · not calibrated')+'</b>'
+      +'<span>config</span><b>'+esc(j.variant)+' · top_n '+esc(j.top_n)+weightsLabel(j.tower_weights)+(j.calibrated?'':' · not calibrated')+'</b>'
       +'</div></div>';
     plotPoints([['live prediction',j.lat,j.lon]]);
   }catch(e){ $('predictResult').innerHTML='<div class="warn" style="margin-top:10px">'

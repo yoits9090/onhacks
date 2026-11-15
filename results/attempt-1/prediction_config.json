@@ -1,0 +1,11 @@
+{
+  "kind": "consensus calibration, not encoder fine-tuning",
+  "model_revision": "a150120cd968d48310d092caf26854f109c90b51",
+  "retrieval_k": 200,
+  "top_n": 10,
+  "towers": [
+    "so400m256",
+    "gopt",
+    "dinov3"
+  ]
+}
