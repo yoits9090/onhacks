@@ -1,0 +1,5 @@
+{
+  "model_type": "chipoint2",
+  "pipeline_tag": "image-feature-extraction",
+  "tags": ["geolocation", "image-geolocalization", "reranker", "street-view", "photo"]
+}

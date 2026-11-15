@@ -1,2 +1,21 @@
 capture/tools/brush-app-aarch64-apple-darwin/
 .DS_Store
+
+# local env / caches
+.venv/
+__pycache__/
+*.pyc
+.cache/
+.env
+.env.*
+
+# model blobs (keep configs/licence/provenance source info)
+encoders/**/*.safetensors
+
+# fetched/generated artifacts — re-created by scripts/fetch_assets.py,
+# smoke_test.py, or the (future) eval pipeline
+weights/
+features/
+street_gallery/
+data/
+artifacts/

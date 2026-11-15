@@ -1,0 +1,20 @@
+Demo app.py and requirements provenance
+=========================================
+
+Source Space : chiikabu-labs/chipoint-v2-geolocation
+Pinned revision: 65dd8df82f36608ad819f5ecd4371da16f73704e
+Fetched via   : https://huggingface.co/spaces/<space>/raw/<revision>/<file>
+
+Files:
+  demo_app.py            <- app.py
+  demo_requirements.txt  <- requirements.txt
+
+The Space runs a Gradio UI and downloads weights/galleries at import time;
+it is archived here as READ-ONLY REFERENCE for the verified street-arm
+pipeline (tower specs, preprocessing, projection heads, chunked gallery
+scoring, fusion, consensus). Do not execute it.
+
+Pre-existing files in this directory (README.md, config.json,
+run_chipoint.py, .gitattributes) come from the model repo
+chiikabu-labs/chipoint-2 at revision
+a150120cd968d48310d092caf26854f109c90b51.

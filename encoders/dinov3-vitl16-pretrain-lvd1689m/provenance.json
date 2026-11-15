@@ -1,0 +1,27 @@
+{
+  "source": "https://modelscope.cn/models/facebook/dinov3-vitl16-pretrain-lvd1689m",
+  "revision": "bab39f7f4023c45534a5326e9378edc5b2016e48",
+  "hf_mirror_of": "facebook/dinov3-vitl16-pretrain-lvd1689m (gated on HF)",
+  "files": {
+    "config.json": {
+      "sha256": "135ecd23e34a70b6fbed8b083fdecb319b7e3a54e3d849258bbe4ddcf1783bb5",
+      "bytes": 745
+    },
+    "preprocessor_config.json": {
+      "sha256": "960c41d1f3a7778b936365769a2d90550b318a6c0a53a0296957adacfe5e0dd7",
+      "bytes": 585
+    },
+    "LICENSE.md": {
+      "sha256": "1e22708c509c2253ebf44f54a080e8c60708f59037288635cd5d5220fe87c418",
+      "bytes": 7503
+    },
+    "README.md": {
+      "sha256": "f9ea6e22356d0040d53c7ead60c7c48719f8c094a1a2fede9a6e6c79aee5331f",
+      "bytes": 14520
+    },
+    "model.safetensors": {
+      "sha256": "dcb2e45127cccbf1601e5f42fef165eea275c8e5213197e8dcf3f48822718179",
+      "bytes": 1212559808
+    }
+  }
+}

@@ -1,0 +1,10 @@
+# Demo-server dependencies (scripts/serve_demo.py) — separate from the
+# GPU experiment stack in requirements-gpu.txt.
+# Versions below are the ones validated locally on 2026-11-15.
+# pillow is needed only for --live upload decoding; recorded mode does not
+# require it at runtime but it is pinned here for the live path.
+fastapi==0.163.1
+uvicorn==0.54.0
+python-multipart==0.0.33
+httpx==0.28.1        # FastAPI TestClient (tests only)
+pillow==13.0.0       # --live upload decode only

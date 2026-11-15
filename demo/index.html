@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Chipoint Street-View — Consensus Calibration Demo</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,650&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
+<style>
+  :root{
+    --paper:#f6f1e7; --card:#fffdf7; --ink:#221d15; --muted:#6f6350;
+    --line:#ddd2bd; --target:#d9480f; --olive:#44571f; --teal:#0f6b66;
+    --grid:rgba(84,70,45,.055);
+  }
+  *{box-sizing:border-box}
+  html,body{margin:0;padding:0}
+  body{
+    background-color:var(--paper);
+    background-image:linear-gradient(var(--grid) 1px,transparent 1px),
+                     linear-gradient(90deg,var(--grid) 1px,transparent 1px);
+    background-size:28px 28px;
+    color:var(--ink);
+    font:15px/1.55 ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;
+  }
+  .wrap{max-width:1180px;margin:0 auto;padding:28px 20px 64px}
+  header.top{display:flex;flex-wrap:wrap;gap:14px;align-items:baseline;
+    justify-content:space-between;border-bottom:2px solid var(--ink);padding-bottom:14px}
+  h1{font-family:Fraunces,Georgia,'Times New Roman',serif;font-weight:650;
+    font-size:clamp(26px,4vw,40px);margin:0;letter-spacing:-.01em}
+  .sub{color:var(--muted);font-size:12.5px;max-width:56ch}
+  .badge{display:inline-block;padding:3px 10px;border:1.5px solid var(--ink);
+    font-size:11px;letter-spacing:.14em;text-transform:uppercase}
+  .badge.live{background:var(--teal);color:#fff;border-color:var(--teal)}
+  .badge.rec{background:var(--card);color:var(--ink)}
+  .warn{margin-top:12px;padding:10px 14px;border:1.5px solid var(--target);
+    background:#fbe9df;font-size:12.5px}
+  section{margin-top:26px}
+  h2{font-family:Fraunces,Georgia,serif;font-size:20px;margin:0 0 10px;
+    border-bottom:1px solid var(--line);padding-bottom:6px}
+  .layout{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:18px}
+  @media (max-width:820px){.layout{grid-template-columns:1fr}}
+  .pane{background:var(--card);border:1.5px solid var(--ink);padding:14px}
+  .pane h3{font-family:Fraunces,Georgia,serif;font-size:16px;margin:0 0 8px}
+  .imgbox{min-height:280px;display:flex;align-items:center;justify-content:center;
+    background:#efe8d8;border:1px solid var(--line);overflow:hidden}
+  .imgbox img{max-width:100%;max-height:420px;display:block}
+  .imgbox .empty{color:var(--muted);font-size:12px;text-align:center;padding:30px 12px}
+  #map{height:380px;border:1px solid var(--line);background:#e9e2d2}
+  .coords-fallback{margin-top:10px;font-size:12px;color:var(--muted);
+    border-top:1px dashed var(--line);padding-top:8px;white-space:pre-wrap}
+  .legend{display:flex;gap:16px;flex-wrap:wrap;font-size:11.5px;margin-top:8px;color:var(--muted)}
+  .dot{display:inline-block;width:10px;height:10px;border-radius:50%;margin-right:5px;vertical-align:-1px}
+  table{border-collapse:collapse;width:100%;font-size:12.5px}
+  th,td{border:1px solid var(--line);padding:6px 9px;text-align:right;white-space:nowrap}
+  th:first-child,td:first-child{text-align:left}
+  thead th{background:#efe7d5;font-family:Fraunces,Georgia,serif;font-size:13px}
+  .exstrip{display:flex;gap:12px;flex-wrap:wrap}
+  .excard{width:170px;border:1.5px solid var(--ink);background:var(--card);
+    padding:8px;cursor:pointer;text-align:left;color:var(--ink)}
+  .excard.sel{outline:3px solid var(--teal)}
+  .excard img{width:100%;height:96px;object-fit:cover;display:block;background:#e7dfcc}
+  .excard .meta{font-size:10.5px;margin-top:6px;color:var(--muted);line-height:1.4}
+  .excard .tag{display:inline-block;margin-top:4px;padding:1px 6px;font-size:9.5px;
+    letter-spacing:.1em;text-transform:uppercase;border:1px solid var(--ink)}
+  .excard .tag.cand{background:var(--teal);color:#fff;border-color:var(--teal)}
+  .excard .tag.base{background:var(--olive);color:#fff;border-color:var(--olive)}
+  .uploadrow{display:flex;gap:10px;flex-wrap:wrap;align-items:center}
+  input[type=file]{font:inherit;font-size:12px;max-width:320px}
+  button{font:inherit;font-size:12.5px;padding:8px 16px;border:1.5px solid var(--ink);
+    background:var(--ink);color:var(--paper);cursor:pointer}
+  button:disabled{opacity:.45;cursor:not-allowed}
+  .note{font-size:12px;color:var(--muted);margin-top:8px}
+  .kv{display:grid;grid-template-columns:auto 1fr;gap:3px 14px;font-size:12.5px}
+  .kv b{font-weight:600}
+  footer{margin-top:40px;border-top:2px solid var(--ink);padding-top:12px;
+    font-size:11.5px;color:var(--muted)}
+  .fade{animation:fade .5s ease both}
+  @keyframes fade{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
+  @media (prefers-reduced-motion:reduce){.fade{animation:none}}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header class="top">
+    <div>
+      <h1>Chipoint Street-View</h1>
+      <div class="sub">Three-tower retrieval fused by the published demo
+        consensus baseline, compared against a frozen calibration selection.
+        Geolocation from a single street photograph — measured, not promised.</div>
+    </div>
+    <div style="text-align:right">
+      <span id="modeBadge" class="badge rec">Recorded</span>
+      <div class="note" id="modeNote" style="margin-top:6px">loading…</div>
+    </div>
+  </header>
+  <div id="warnBox"></div>
+
+  <section>
+    <h2>Query image</h2>
+    <div class="layout">
+      <div class="pane">
+        <h3 id="imgTitle">No example selected</h3>
+        <div class="imgbox" id="imgBox">
+          <div class="empty">Select an evaluation example below, or upload a
+            photo when live mode is enabled.</div>
+        </div>
+        <div class="kv" id="imgMeta" style="margin-top:10px"></div>
+      </div>
+      <div class="pane">
+        <h3>Map</h3>
+        <div id="map"></div>
+        <div class="coords-fallback" id="coordFallback">coordinates appear here</div>
+        <div class="legend">
+          <span><span class="dot" style="background:var(--target)"></span>known truth</span>
+          <span><span class="dot" style="background:var(--olive)"></span>baseline (top_n&nbsp;10)</span>
+          <span><span class="dot" style="background:var(--teal)"></span>deployed prediction</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <h2>Evaluation examples <span class="note" id="exCount"></span></h2>
+    <div class="exstrip" id="exStrip"></div>
+    <div class="note" id="exNote">The exporter writes the first evaluation
+      examples in manifest order — these are not cherry-picked successes.</div>
+  </section>
+
+  <section>
+    <h2>Baseline vs selected — frozen report</h2>
+    <div id="reportBox"><div class="pane"><div class="empty"
+      style="color:var(--muted)">Waiting for experiment artifacts
+      (artifacts/experiment-v1/report.json). The page updates on refresh.</div></div></div>
+  </section>
+
+  <section>
+    <h2>Live upload</h2>
+    <div class="pane">
+      <div class="uploadrow">
+        <input type="file" id="fileInput" accept="image/jpeg,image/png,image/webp" disabled>
+        <button id="uploadBtn" disabled>Predict</button>
+        <span class="badge rec" id="uploadBadge">Recorded</span>
+      </div>
+      <div class="note" id="uploadNote">Recorded session — uploads are disabled.
+        Restart the server with --live on the CUDA host to enable inference.</div>
+      <div id="predictResult"></div>
+    </div>
+  </section>
+
+  <footer>
+    Street-view geolocation demo built on the public Chipoint-2 weights and
+    street gallery by Chiikabu Labs, evaluated on OSV-5M test imagery.
+    This page reports a <b>consensus calibration</b> comparison — it is not
+    encoder training and makes no accuracy guarantee beyond the measured
+    report shown above. Uploads are not stored. Map tiles and fonts use
+    third-party services.
+  </footer>
+</div>
+
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+<script>
+'use strict';
+const $ = id => document.getElementById(id);
+const state = {status:null, example:null, map:null, markers:[], layer:null, objectUrl:null};
+const fmt = (v,d=2) => (v===null||v===undefined||Number.isNaN(v)) ? '—' : Number(v).toFixed(d);
+const esc = s => String(s??'').replace(/[&<>"']/g, c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+
+async function boot(){
+  try{ state.status = await (await fetch('/api/status')).json(); }
+  catch(e){ $('modeNote').textContent='status unavailable: '+e; return; }
+  renderChrome(); renderReport(); renderExamples();
+  if(state.status.examples.length) selectExample(state.status.examples[0]);
+}
+
+function renderChrome(){
+  const s = state.status, live = s.mode==='live';
+  $('modeBadge').textContent = live?'Live':'Recorded';
+  $('modeBadge').className = 'badge '+(live?'live':'rec');
+  $('modeNote').textContent = live
+    ? 'live inference enabled'+(s.cuda_available?'':' — CUDA unavailable, uploads will fail')
+    : 'recorded artifacts only';
+  if(live && !s.cuda_available){
+    $('warnBox').innerHTML='<div class="warn">Live mode was requested but CUDA '
+      +'is not available on this host — uploads will return an explicit error.</div>';
+  }
+  const up = $('fileInput'), btn=$('uploadBtn');
+  up.disabled = !live; btn.disabled = !live;
+  $('uploadBadge').textContent = live?'Live':'Recorded';
+  $('uploadBadge').className = 'badge '+(live?'live':'rec');
+  $('uploadNote').textContent = live
+    ? 'JPEG/PNG/WebP up to 10 MB. Uploads are decoded in memory only — nothing is stored.'
+    : 'Recorded session — uploads are disabled. Restart the server with --live on the CUDA host to enable inference.';
+}
+
+const METRICS=[
+  ['geoscore','GeoScore',''],
+  ['mean_km','mean error','km'],
+  ['median_km','median error','km'],
+  ['acc@1km','accuracy ≤ 1 km','%'],
+  ['acc@25km','accuracy ≤ 25 km','%'],
+  ['acc@200km','accuracy ≤ 200 km','%'],
+  ['acc@750km','accuracy ≤ 750 km','%'],
+  ['acc@2500km','accuracy ≤ 2500 km','%']];
+function fmtMetric(key, v){
+  if(v===null||v===undefined||Number.isNaN(v)) return '—';
+  const unit=(METRICS.find(m=>m[0]===key)||[])[2];
+  return fmt(v, key==='geoscore'?2:1)+(unit==='%'?'%':unit?(' '+unit):'');
+}
+function renderReport(){
+  const r = state.status.report, pc = state.status.prediction_config;
+  if(!r){ $('reportBox').innerHTML='<div class="pane"><div class="empty" style="color:var(--muted)">'
+    +'Waiting for artifacts/experiment-v1/report.json — refresh after the experiment finishes.</div></div>'; return; }
+  const b=r.baseline||{}, s=r.selected||{};
+  let h='<div class="pane fade"><div style="overflow-x:auto"><table><thead><tr>'
+    +'<th>metric</th><th>baseline</th><th>selected</th></tr></thead><tbody>';
+  for(const [key,name] of METRICS){
+    h+='<tr><td>'+esc(name)+'</td><td>'+fmtMetric(key,b[key])+'</td><td>'+fmtMetric(key,s[key])+'</td></tr>';
+  }
+  h+='</tbody></table></div>';
+  h+='<div class="kv" style="margin-top:12px">'
+    +'<span>scope</span><b>'+esc(r.scope||'—')+'</b>'
+    +'<span>evaluation queries / sequences</span><b>'+(r.evaluation_queries??'—')+' / '+(r.evaluation_sequences??'—')+'</b>'
+    +'<span>selected top_n</span><b>'+(r.selected_top_n??'—')+'</b>'
+    +'<span>mean GeoScore delta</span><b>'+fmt(r.mean_geoscore_delta,4)+'</b>'
+    +'<span>paired 95% bootstrap CI</span><b>['+fmt((r.paired_sequence_bootstrap_95pct||[])[0],4)+', '+fmt((r.paired_sequence_bootstrap_95pct||[])[1],4)+']</b>'
+    +'<span>decision</span><b>'+esc(r.decision||'—')+'</b>'
+    +'<span>accept candidate</span><b>'+(r.accept_candidate===true?'yes':r.accept_candidate===false?'no':'—')+'</b>'
+    +'</div>';
+  if(pc) h+='<div class="note" style="margin-top:8px">Deployed prediction_config: top_n='+esc(pc.top_n)+' ('+esc(pc.kind||'')+').</div>';
+  else h+='<div class="note" style="margin-top:8px">No prediction_config.json yet — live fallback is the uncalibrated baseline (top_n 10).</div>';
+  h+='</div>';
+  $('reportBox').innerHTML=h;
+}
+
+function renderExamples(){
+  const ex=state.status.examples||[];
+  $('exCount').textContent = ex.length?('('+ex.length+' shown)'):'';
+  $('exStrip').innerHTML = ex.length? ex.map((e,i)=>
+    '<button class="excard" data-i="'+i+'">'
+    +(e.image_url?'<img src="'+esc(e.image_url)+'" alt="" loading="lazy">':'<div class="imgbox" style="min-height:0;height:96px"><div class="empty">no image</div></div>')
+    +'<div class="meta">'+esc(e.id||('example-'+i))+' · seq '+esc(e.sequence||'—')
+    +'<br>true '+fmt(e.true_lat)+', '+fmt(e.true_lon)
+    +'<br>base '+fmt(e.baseline_km,1)+' km · sel '+fmt(e.selected_km,1)+' km</div>'
+    +'<span class="tag '+(e.deployed==='candidate'?'cand':'base')+'">'+esc(e.deployed||'—')+'</span></button>'
+  ).join('') : '<div class="note">No examples exported yet (demo_examples/examples.json).</div>';
+  document.querySelectorAll('.excard').forEach(b=>b.onclick=()=>selectExample(ex[+b.dataset.i]));
+}
+
+function selectExample(e){
+  state.example=e;
+  if(state.objectUrl){ URL.revokeObjectURL(state.objectUrl); state.objectUrl=null; }
+  document.querySelectorAll('.excard').forEach(b=>b.classList.remove('sel'));
+  const idx=(state.status.examples||[]).indexOf(e);
+  const card=document.querySelector('.excard[data-i="'+idx+'"]'); if(card)card.classList.add('sel');
+  $('imgTitle').textContent = 'Example '+(e.id||'')+' — sequence '+(e.sequence||'—');
+  $('imgBox').innerHTML = e.image_url
+    ? '<img src="'+esc(e.image_url)+'" alt="street view">'
+    : '<div class="empty">image asset missing</div>';
+  $('imgMeta').innerHTML =
+    '<span>known truth</span><b>'+fmt(e.true_lat)+', '+fmt(e.true_lon)+'</b>'
+    +'<span>baseline pred</span><b>'+fmt(e.baseline_lat)+', '+fmt(e.baseline_lon)+' ('+fmt(e.baseline_km,1)+' km)</b>'
+    +'<span>selected pred</span><b>'+fmt(e.selected_lat)+', '+fmt(e.selected_lon)+' ('+fmt(e.selected_km,1)+' km)</b>'
+    +'<span>deployed</span><b>'+esc(e.deployed||'—')+'</b>'
+    +'<span>prediction</span><b>'+fmt(e.prediction_lat)+', '+fmt(e.prediction_lon)+'</b>';
+  drawMap(e);
+}
+
+const PIN_COLORS={truth:'#d9480f',baseline:'#44571f',deployed:'#0f6b66',live:'#0f6b66'};
+function plotPoints(pts){ // [[name,lat,lon],...] — replaces whatever is shown
+  const valid=pts.filter(p=>Number.isFinite(p[1])&&Number.isFinite(p[2]));
+  $('coordFallback').textContent = valid.length
+    ? valid.map(p=>p[0]+': '+fmt(p[1])+', '+fmt(p[2])).join('\n')
+    : 'no plottable coordinates';
+  if(state.map){ state.map.remove(); state.map=null; }
+  $('map').innerHTML='';
+  if(!valid.length) return;
+  if(!window.L){ $('coordFallback').textContent+='\n(map library unavailable — coordinates only)'; return; }
+  const map=L.map('map').setView([valid[0][1],valid[0][2]],3);
+  L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png',
+    {maxZoom:10,attribution:'© OpenStreetMap contributors'}).addTo(map);
+  valid.forEach(p=>{
+    const m=L.circleMarker([p[1],p[2]],{radius:p[0]==='truth'?9:7,
+      color:'#fff',weight:2,fillColor:PIN_COLORS[p[0]]||'#0f6b66',fillOpacity:.95}).addTo(map);
+    m.bindTooltip(p[0]);
+  });
+  if(valid.length>1) map.fitBounds(L.latLngBounds(valid.map(p=>[p[1],p[2]])).pad(.25));
+  state.map=map;
+}
+function drawMap(e){
+  plotPoints([['truth',e.true_lat,e.true_lon],
+              ['baseline',e.baseline_lat,e.baseline_lon],
+              ['deployed',e.prediction_lat,e.prediction_lon]]);
+}
+
+$('uploadBtn').onclick=async()=>{
+  const f=$('fileInput').files[0]; if(!f)return;
+  const fd=new FormData(); fd.append('file',f);
+  $('predictResult').innerHTML='<div class="note">predicting…</div>';
+  try{
+    const r=await fetch('/api/predict',{method:'POST',body:fd});
+    const j=await r.json();
+    if(!r.ok) throw new Error(j.detail||('HTTP '+r.status));
+    // Live query replaces whatever was shown: uploaded image, no recorded
+    // truth/errors, single predicted point on a fresh map.
+    state.example=null;
+    document.querySelectorAll('.excard').forEach(b=>b.classList.remove('sel'));
+    if(state.objectUrl) URL.revokeObjectURL(state.objectUrl);
+    state.objectUrl=URL.createObjectURL(f);
+    $('imgTitle').textContent='Live query — ground truth unknown';
+    $('imgBox').innerHTML='<img src="'+state.objectUrl+'" alt="uploaded street view">';
+    $('imgMeta').innerHTML=
+      '<span>mode</span><b>live inference</b>'
+      +'<span>config</span><b>'+esc(j.variant)+' · top_n '+esc(j.top_n)+(j.calibrated?'':' · not calibrated')+'</b>'
+      +'<span>note</span><b>no ground truth for uploads</b>';
+    $('predictResult').innerHTML='<div class="pane" style="margin-top:10px"><div class="kv">'
+      +'<span>predicted</span><b>'+fmt(j.lat)+', '+fmt(j.lon)+'</b>'
+      +'<span>config</span><b>'+esc(j.variant)+' · top_n '+esc(j.top_n)+(j.calibrated?'':' · not calibrated')+'</b>'
+      +'</div></div>';
+    plotPoints([['live prediction',j.lat,j.lon]]);
+  }catch(e){ $('predictResult').innerHTML='<div class="warn" style="margin-top:10px">'
+    +esc(e.message)+'</div>'; }
+};
+
+boot();
+</script>
+</body>
+</html>

@@ -1,0 +1,8 @@
+torchvision
+transformers
+open_clip_torch
+modelscope
+huggingface_hub
+numpy
+pillow
+spaces

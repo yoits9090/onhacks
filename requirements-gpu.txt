@@ -1,0 +1,23 @@
+# GPU-instance dependencies for the verified street-arm baseline.
+#
+# torch/torchvision are installed FIRST from the CUDA 12.8 index by
+# scripts/setup_instance.sh; the unpinned entries below are then already
+# satisfied by that install — do not let pip select a CPU build. Their
+# cu128 versions are whatever the index resolves; they are intentionally
+# not pinned here.
+#
+# transformers and open_clip_torch ARE pinned to the versions validated
+# during local prep (see artifacts/prep-verification.log):
+#   transformers==5.23.0  — DINOv3ViTModel support, dtype= kwarg verified
+#   open_clip_torch==4.2.2 — registry contains both SigLIP2-256/webli
+#                            towers; embed_dim 1152/1536 verified
+# open_clip_torch is imported lazily by chipoint.towers only when an
+# open_clip tower (so400m256/gopt) is constructed.
+torch
+torchvision
+transformers==5.23.0
+open_clip_torch==4.2.2
+huggingface_hub
+safetensors
+numpy
+pillow
