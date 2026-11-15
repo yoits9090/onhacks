@@ -1,0 +1,26 @@
+{
+  "verified": true,
+  "fresh_evaluation_sequences": 2000,
+  "excluded_original_sequences": 4000,
+  "tuning_sequences": 2000,
+  "all_cache_hashes_and_frozen_tower_states_match": true,
+  "selected_top_n": 5,
+  "selected_tower_weights": {
+    "dinov3": 0.5,
+    "gopt": 2.0,
+    "so400m256": 1.0
+  },
+  "mean_geoscore_delta": 119.02382173501945,
+  "paired_95pct_ci": [
+    77.13971552338379,
+    161.11134477599612
+  ],
+  "sensitivity_97_5pct_ci_two_attempt_bonferroni": [
+    70.7004375465419,
+    166.96114454023055
+  ],
+  "acc25_baseline_correct": 656,
+  "acc25_selected_correct": 670,
+  "accept_candidate": true,
+  "checks": "independent vector-angle distances, all metrics, fresh bootstrap replay, source/candidate/cache hashes, locked tuning choice, all-4000-sequence exclusion, unchanged numeric encoder/head/gallery states"
+}

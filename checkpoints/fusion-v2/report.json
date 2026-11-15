@@ -1,0 +1,44 @@
+{
+  "accept_candidate": true,
+  "baseline": {
+    "acc@1km": 0.5,
+    "acc@200km": 65.9,
+    "acc@2500km": 90.05,
+    "acc@25km": 32.800000000000004,
+    "acc@750km": 79.95,
+    "geoscore": 3963.362827830203,
+    "mean_km": 1119.8666428737454,
+    "median_km": 66.42261369823787
+  },
+  "candidate_fused_sha256": "36f9c1cc81d0216a08959a4bbb951dba6e1421a63a3597c9facf5e1c5abc4c50",
+  "decision": "use selected candidate",
+  "evaluation_queries": 2000,
+  "evaluation_sequences": 2000,
+  "failed_images": 0,
+  "mean_geoscore_delta": 119.02382173501945,
+  "paired_sequence_bootstrap_95pct": [
+    77.13971552338379,
+    161.11134477599612
+  ],
+  "prediction_config_sha256": "002128bd48094285f00c6dd47e41937884b6c5c4b6bc3fcf49a44a1b07722b22",
+  "predictions_sha256": "80facdf38db14fc0a37efeadad33d897767f0bd826d4ecab7df2b7c229faccb5",
+  "scope": "Fresh OSV-5M archive-01 subset; all original 4000 sequences excluded; not official benchmark",
+  "selected": {
+    "acc@1km": 0.35000000000000003,
+    "acc@200km": 67.25,
+    "acc@2500km": 92.55,
+    "acc@25km": 33.5,
+    "acc@750km": 83.39999999999999,
+    "geoscore": 4082.386649565223,
+    "mean_km": 890.433559910134,
+    "median_km": 64.95238720989326
+  },
+  "selected_top_n": 5,
+  "selected_tower_weights": {
+    "dinov3": 0.5,
+    "gopt": 2.0,
+    "so400m256": 1.0
+  },
+  "selection_sha256": "70efd5bb38b36d4e407f513e99a08770782c6bf401e9be4cd8055a71c3deb4a1",
+  "tuning_lock_sha256": "0559a9e6cec795be82e2774ce2e8c0a6eeab11c12a272814bb247e8f2216d3be"
+}

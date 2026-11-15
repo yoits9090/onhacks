@@ -3,8 +3,14 @@
 A reproducible street-photo geolocation experiment and presentation demo,
 built on [Chiikabu Labs' Chipoint v2](https://huggingface.co/chiikabu-labs/chipoint-2).
 
-**Status:** the single A100 experiment is starting. No measured accuracy gain
-is claimed yet. Synthetic test results are software checks, not model results.
+**Status:** a verified calibration gain is saved in
+[the accepted v2 checkpoint](checkpoints/fusion-v2/README.md).
+On 2,000 fresh, sequence-disjoint evaluation images, GeoScore increases
+3963.36 -> 4082.39 (paired 95% difference interval +77.14 to +161.11),
+and Acc@25km increases 32.80% -> 33.50%. These are development-subset results
+against the public street-view demo baseline, not the published full pipeline.
+The earlier depth-only attempt failed and remains preserved separately.
+Synthetic tests are software checks, not model results.
 
 ## What We Built
 

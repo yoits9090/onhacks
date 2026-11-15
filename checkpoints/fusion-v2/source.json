@@ -1,0 +1,15 @@
+{
+  "base_cache_identity_sha256": "e6c1f9a3ef9c9eafecf6d81392b8e6ab518ec6163d52775414403923e486361d",
+  "base_manifest_sha256": "feaf18c5bcaa2d26bfb131e561396b0569632abf661e4942e64dcbc2ed3cbaef",
+  "config_sha256": "d2c429bc5eb19eb51b4a3f1a2eb58fb8e0cf5d36f84e9f14a71faf3135171924",
+  "implementation": {
+    "chipoint/baseline.py": "3f94482b65be351182cd5b097c4c8b336be894f59362990fd134f7b76b11e68f",
+    "chipoint/calibration.py": "6f01e44a09734dea18a13ef3b6e3bc1f0b84f5170844f42c1734dbdb6fadf255",
+    "chipoint/geo.py": "9837fad356f7649d025ea08848d187a233dc8436a16ecb6ccfda842fb6b506a7",
+    "chipoint/load.py": "1046e1188dd31a993221d45b1b0bc5c2e9b2d85cc091b771a96b63da8ce293f1",
+    "chipoint/nn.py": "cc05b6a8c914d673ba29d0ef6ebb6d9d8d66925ba6bbed71093d661793acda0b",
+    "chipoint/towers.py": "11d5393bcfc69049cac84b22c3df42c30ccdb9e0a28bb59c68be2d340da4df6a",
+    "scripts/calibrate_fusion.py": "35b8b6c4c1d8157004cd98d894baf249120860acdc041ab57648d26dd8996a7a",
+    "scripts/run_experiment.py": "a001cca900783c81743b41f7552c14a27809ff137d89565ac20e877a25e5f1d2"
+  }
+}

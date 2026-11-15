@@ -1,0 +1,18 @@
+{
+  "coords_sha256": "57546309fb3fdc7beaaf8ede63190aef10199da0ca2726a528c3e09f65326b11",
+  "device": "NVIDIA A100-SXM4-80GB",
+  "encoder_dtype": "torch.float16",
+  "encoder_numeric_sha256": "5899897e699bf179499c5aec92097e12d5edf4fec929bb6330e50552e56b5467",
+  "gallery_dtype": "float16",
+  "gallery_sha256": "0b46f74e298bda45af3485c727c46e771d67356e2b9afe80fdcb56b3bb423dfd",
+  "head_numeric_sha256": "3f0b5c6f96e59eae1fee5aed80b6547da94cc19950adfefe98e9a0ca059144e7",
+  "manifest_sha256": "3412783bad573af0da5869e543417813ba11579ea5563e3d08669fd6180de271",
+  "source_sha256": "8f884c39dfecd3d8a2b9dbec9a0c7b3984d22d0911163cf35434f0d5c163f268",
+  "versions": {
+    "numpy": "2.5.4",
+    "open_clip_torch": "4.2.2",
+    "torch": "2.11.0+cu128",
+    "torchvision": "0.26.0+cu128",
+    "transformers": "5.23.0"
+  }
+}
