@@ -1,0 +1,74 @@
+{
+  "accept_candidate": false,
+  "baseline": {
+    "acc@1km": 0.6,
+    "acc@200km": 68.825,
+    "acc@2500km": 92.375,
+    "acc@25km": 34.675,
+    "acc@750km": 83.15,
+    "geoscore": 4096.433582563514,
+    "mean_km": 847.3132010831685,
+    "median_km": 59.646239885818616
+  },
+  "baseline_fused_sha256": "19855249f11744b5ac948ceb101eef6bbb48febe3202af27b8979c31dff078d3",
+  "baseline_kind": "accepted fusion-v2 checkpoint",
+  "baseline_prediction_config": {
+    "kind": "tower-fusion consensus calibration, not encoder training",
+    "model_revision": "a150120cd968d48310d092caf26854f109c90b51",
+    "retrieval_k": 200,
+    "top_n": 5,
+    "tower_weights": {
+      "dinov3": 0.5,
+      "gopt": 2.0,
+      "so400m256": 1.0
+    },
+    "towers": [
+      "so400m256",
+      "gopt",
+      "dinov3"
+    ]
+  },
+  "baseline_top_n": 5,
+  "baseline_tower_weights": {
+    "dinov3": 0.5,
+    "gopt": 2.0,
+    "so400m256": 1.0
+  },
+  "candidate_fused_sha256": "6a18ac9460c8e2eea15117048bc5ced74532fea1d7751b7175f07c2bd0be3eaf",
+  "decision": "retain accepted v2 checkpoint",
+  "evaluation_queries": 4000,
+  "evaluation_sequences": 4000,
+  "failed_images": 0,
+  "familywise_confidence_percent": 98.33333333333333,
+  "mean_geoscore_delta": 6.236160175351006,
+  "paired_sequence_bootstrap_95pct": [
+    -4.585448479754663,
+    17.187816219368106
+  ],
+  "paired_sequence_bootstrap_adjusted": [
+    -6.862918042139167,
+    19.71935889850417
+  ],
+  "planned_attempts": 3,
+  "prediction_config_sha256": "002128bd48094285f00c6dd47e41937884b6c5c4b6bc3fcf49a44a1b07722b22",
+  "predictions_sha256": "0207ac3763faaad88c68cc5af27e27cae9145900a32453b88cf60334516b895c",
+  "scope": "Fresh OSV-5M archive-02 subset; all 6000 previous sequences excluded; reference is accepted v2, not original baseline",
+  "selected": {
+    "acc@1km": 0.5,
+    "acc@200km": 69.525,
+    "acc@2500km": 92.35,
+    "acc@25km": 35.099999999999994,
+    "acc@750km": 83.22500000000001,
+    "geoscore": 4102.669742738865,
+    "mean_km": 852.7141968705319,
+    "median_km": 56.48329256004214
+  },
+  "selected_top_n": 7,
+  "selected_tower_weights": {
+    "dinov3": 0.5,
+    "gopt": 1.5,
+    "so400m256": 1.0
+  },
+  "selection_sha256": "c128e9e50615debb3711c4a9e33954e8162c2205088423a1b27c777ecca2519c",
+  "tuning_lock_sha256": "390ea5f4ebb074bde9f0d4ea1e562f04447cdc39b6e349d9fddfeb0687b79335"
+}

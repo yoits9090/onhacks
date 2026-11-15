@@ -9,8 +9,8 @@ Deadline: November 15, 2026, 17:00 EST. Target Submitted status at 16:30.
 
 A street-photo geolocation demo and reproducible experiment for testing whether
 lightweight prediction calibration improves a frozen open-weight retrieval
-pipeline. It compares a pinned public-demo baseline with a tuning-selected
-consensus setting on sequence-disjoint images. It exports an offline recorded
+pipeline. It compares a pinned public-demo baseline with tuning-selected fusion
+weights and consensus settings on sequence-disjoint images. It exports an offline recorded
 demo so the presentation does not depend on an interruptible GPU instance.
 
 We build on Chiikabu Labs' Chipoint v2, rather than claiming to have trained
@@ -18,34 +18,60 @@ its encoders or reproduced its unpublished full reranker. Our contribution is
 the bounded evaluation/calibration workflow, verified retrieval integration,
 resume/export tooling, and demonstration interface.
 
-## Results: Fill From Frozen Artifacts Only
+## Verified Results - Ready To Use
 
-Read `artifacts/experiment-v1/report.json` for measured values and the decision.
-Read `prediction_config.json` for the deployed setting. Do not substitute test
-fixture values, published model-card numbers, or the best individual example.
+"On 2,000 fresh OSV-5M sequences, our frozen-tower calibration improves
+GeoScore from 3963.36 to 4082.39 against the public street-view demo baseline.
+The paired difference is +119.02, with a 95% sequence-bootstrap interval
+of [+77.14, +161.11]. Accuracy within 25km increases from 32.80% to 33.50%,
+and mean error falls from 1119.87km to 890.43km."
 
-Until that report exists, say: **"The evaluation has not completed yet."**
-If `accept_candidate` is false, say: **"Our test did not establish a reliable
-improvement, so the demo retains the baseline."** Do not imply that a
-non-significant positive difference proves an improvement.
+The selected parameters are SO400M:GOPT:DINOv3 weights 1:2:0.5 and consensus
+depth 5. Selection used only the original tuning cohort; all 4,000 sequences
+from the first attempt were excluded from this comparison.
 
-The report is for one OSV-5M development subset, with one image per sequence.
+Not all metrics improve: accuracy within 1km declines from 0.50% to 0.35%.
+The earlier depth-only attempt was rejected. A later 48-setting refinement
+was compared against the accepted checkpoint on another 4,000 new sequences:
+its +6.24 GeoScore interval crosses zero, so it was also rejected. Do not add
+gains across these different cohorts or call the third attempt an improvement.
+
+Frozen evidence: `results/attempt-2/report.json` and
+`checkpoints/fusion-v2/lead-verification.json`; later rejection:
+`results/attempt-3/report.json`. Tag: `checkpoint-fusion-v2`.
+
+These reports cover OSV-5M development subsets, with one image per sequence.
 It is not the official full benchmark and is not a general-photo evaluation.
 The output is a calibration configuration, not newly fine-tuned encoder weights.
 
+## What We Learned
+
+Most of the hard engineering was making a comparison trustworthy: matching
+each encoder to its gallery, verifying assets, caching the GPU work, keeping
+whole driving sequences apart, locking the candidate, and exporting real
+examples without selecting only successes. Keeping rejected attempts and the
+accepted checkpoint prevents a later noisy result from silently replacing it.
+
+## Demonstration Assets
+
+- `PITCH.md`: timed five-minute script and limitations.
+- `docs/demo-recorded.webp`: compact real screenshot for the project README.
+- `artifacts/screenshots/demo-desktop.png`: full-resolution demonstration
+  picture for manual Devpost upload; mobile/hero captures are beside it.
+- Local full recorded fallback: http://127.0.0.1:8000.
+- Local live CUDA upload demo, while the SSH tunnel/GPU remains on:
+  http://127.0.0.1:8001. Initial three-model load is slow; the demo is warmed.
+- Localhost URLs are for this laptop, NOT remotely accessible submission links.
+- The original repository is private. Arrange judge access or approve a
+  separate sanitized public project snapshot; do not assume a private GitHub
+  link works for judges. Nothing has been published publicly or submitted.
+
 ## Pitch Timing
 
-- 0:00-0:35: problem and intended use. Locating an unfamiliar street photo is
-  difficult; a point on a map needs an honest evaluation, not just a confident UI.
-- 0:35-1:45: show one example. Identify recorded versus live mode, display the
-  image, prediction, known location, and baseline/candidate comparison.
-- 1:45-2:45: explain the pipeline: frozen encoders, matching image galleries,
-  candidate fusion, and geographic consensus. Explain our exact contribution.
-- 2:45-3:45: show the frozen aggregate comparison, sequence-disjoint split, and
-  uncertainty interval. State the actual pass/fail decision plainly.
-- 3:45-4:30: impact and limitations. This is street-view scoped; location errors
-  remain possible. Do not use model guesses as proof of a person's location.
-- 4:30-5:00: what we learned, a concrete next step, and upstream acknowledgments.
+Use [PITCH.md](PITCH.md) as the canonical timed script: problem, system,
+reproducibility, rejected first attempt, accepted result, demo, then limits.
+Rehearse with a five-minute timer. If short on time, omit optional follow-up
+details rather than mislabeling recorded output as live.
 
 ## Demonstration Fallback
 

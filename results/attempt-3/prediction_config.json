@@ -1,0 +1,16 @@
+{
+  "kind": "tower-fusion consensus calibration, not encoder training",
+  "model_revision": "a150120cd968d48310d092caf26854f109c90b51",
+  "retrieval_k": 200,
+  "top_n": 5,
+  "tower_weights": {
+    "dinov3": 0.5,
+    "gopt": 2.0,
+    "so400m256": 1.0
+  },
+  "towers": [
+    "so400m256",
+    "gopt",
+    "dinov3"
+  ]
+}

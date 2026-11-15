@@ -1,0 +1,10 @@
+{
+  "fused_sha256": "b8a8c60d44f353b303b9726a8e093fa14307dc0b9d114863ed94d499a3f097f8",
+  "top_n": 7,
+  "tower_weights": {
+    "dinov3": 0.5,
+    "gopt": 1.5,
+    "so400m256": 1.0
+  },
+  "tuning_lock_sha256": "390ea5f4ebb074bde9f0d4ea1e562f04447cdc39b6e349d9fddfeb0687b79335"
+}

@@ -1,0 +1,21 @@
+{
+  "verified": true,
+  "evaluation_sequences": 4000,
+  "excluded_previous_sequences": 6000,
+  "tuning_candidates": 48,
+  "all_750_new_cache_hashes_and_original_model_states_match": true,
+  "baseline": "saved accepted fusion-v2 checkpoint, not original demo",
+  "mean_geoscore_delta": 6.236160175351004,
+  "paired_95pct_ci": [
+    -4.585448479754665,
+    17.187816219368106
+  ],
+  "paired_98_333pct_ci": [
+    -6.8629180421391665,
+    19.71935889850417
+  ],
+  "accept_candidate": false,
+  "decision": "retain immutable v2; extra refinement not convincingly better",
+  "deployment_byte_identical_to_v2_checkpoint": true,
+  "checks": "independent vector-angle distances, all metrics, fresh bootstrap replay, exact source/candidate/cache hashes, tuning-only locked winner, all-6000-sequence exclusion, unchanged numeric encoder/head/gallery states"
+}

@@ -73,6 +73,7 @@
   .note{font-size:12px;color:var(--muted);margin-top:8px}
   .kv{display:grid;grid-template-columns:auto 1fr;gap:3px 14px;font-size:12.5px}
   .kv b{font-weight:600}
+  @media (max-width:650px){.kv{grid-template-columns:1fr}}
   footer{margin-top:40px;border-top:2px solid var(--ink);padding-top:12px;
     font-size:11.5px;color:var(--muted)}
   .fade{animation:fade .5s ease both}
@@ -113,7 +114,7 @@
         <div class="coords-fallback" id="coordFallback">coordinates appear here</div>
         <div class="legend">
           <span><span class="dot" style="background:var(--target)"></span>known truth</span>
-          <span><span class="dot" style="background:var(--olive)"></span>baseline (top_n&nbsp;10)</span>
+          <span><span class="dot" style="background:var(--olive)"></span><span id="baselineLegend">baseline (top_n&nbsp;10)</span></span>
           <span><span class="dot" style="background:var(--teal)"></span>deployed prediction</span>
         </div>
       </div>
@@ -175,6 +176,13 @@ async function boot(){
 
 function renderChrome(){
   const s = state.status, live = s.mode==='live';
+  const bl=$('baselineLegend');
+  if(bl){
+    const rb=s.report;
+    const n=(rb&&rb.baseline_top_n!=null)?rb.baseline_top_n:10;
+    const kind=(rb&&rb.baseline_kind)?' · '+rb.baseline_kind:'';
+    bl.textContent='baseline (top_n '+n+')'+kind;
+  }
   $('modeBadge').textContent = live?'Live':'Recorded';
   $('modeBadge').className = 'badge '+(live?'live':'rec');
   $('modeNote').textContent = live

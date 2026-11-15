@@ -1,0 +1,49 @@
+{
+  "archive_file": "images/test/02.zip",
+  "base_run": "artifacts/experiment-v1",
+  "batch_size": 16,
+  "bootstrap_replicates": 10000,
+  "bootstrap_seed": 1794765000,
+  "candidate_top_n": [
+    3,
+    5,
+    7,
+    10
+  ],
+  "dataset_repo": "osv5m/osv5m",
+  "dataset_revision": "cff33609b56b54d8743b7ee7a416eb8433e9a681",
+  "deadline_utc": "2026-11-15T21:00:00+00:00",
+  "dinov3_weights": [
+    0.25,
+    0.5,
+    0.75
+  ],
+  "evaluation_sequence_counts": [
+    4000,
+    2000
+  ],
+  "familywise_alpha": 0.05,
+  "gopt_weights": [
+    1.5,
+    2.0,
+    3.0,
+    4.0
+  ],
+  "image_salt": "chipoint-image-v1:",
+  "max_worker_minutes": 60,
+  "metadata_file": "test.csv",
+  "model_revision": "a150120cd968d48310d092caf26854f109c90b51",
+  "name": "chipoint-fusion-refinement-v3",
+  "planned_attempts": 3,
+  "reference_checkpoint": "checkpoints/fusion-v2",
+  "reference_run": "artifacts/experiment-v2",
+  "retrieval_k": 200,
+  "sample_salt": "chipoint-fusion-v3-evaluation:",
+  "schema": 1,
+  "split_salt": "chipoint-v1:",
+  "towers": [
+    "so400m256",
+    "gopt",
+    "dinov3"
+  ]
+}
