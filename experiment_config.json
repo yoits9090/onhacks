@@ -20,6 +20,6 @@
   "deadline_utc": "2026-11-15T21:00:00+00:00",
   "max_worker_minutes": 180,
   "max_hourly_usd": 1.3,
-  "approved_spend_usd": 0,
+  "approved_spend_usd": 7.5,
   "experiment_spend_ceiling_usd": 7.5
 }

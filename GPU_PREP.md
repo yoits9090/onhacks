@@ -106,7 +106,8 @@ not hash-pinned by this repo.
 
 `LAUNCH_PLAN.md` is the authoritative plan; `experiment_config.json` freezes
 the experiment (deadline **2026-11-15T21:00Z** = 16:00 EST,
-`max_worker_minutes` 180, `approved_spend_usd` 0). `scripts/run_once.sh` is
+`max_worker_minutes` 180, `approved_spend_usd` 7.5, a budget target rather
+than an enforced billing cap). `scripts/run_once.sh` is
 operational glue only — it chooses no models, samples no data, scores
 nothing, and never creates/rents/terminates cloud resources.
 

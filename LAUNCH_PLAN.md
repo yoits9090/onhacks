@@ -1,13 +1,14 @@
 # One Instance, One Run
 
-This is the launch plan, not authorization to rent hardware.
-No cloud pod has been created. No improvement has been measured.
+The user approved the specific one-instance rental described here.
+One cloud pod is provisioning. No improvement has been measured.
 The local launcher, export/sync path and presentation demo are implemented.
 The evaluation harness passes 12 synthetic tests; launcher/demo checks and
 desktop/mobile browser checks pass. None of those checks measure model accuracy
-or verify CUDA. The remaining cloud prerequisites are registering the user's
-existing public SSH key (none registered at last check) and approval of the
-specific rental. No API key or private SSH key goes onto the worker.
+or verify CUDA. The existing public SSH key is registered. Prime accepted one
+DataCrunch A100 80GB spot instance with 200GB disk at $1.2478/hour on November
+15 at 13:53 EST, within the approved $1.30/hour ceiling. No API key or private
+SSH key goes onto the worker.
 
 ## Actual Submission Requirements
 
@@ -62,7 +63,8 @@ report that no reliable gain was demonstrated.
 ## Fixed Experiment
 
 `experiment_config.json` freezes the source revisions and search before any
-outcomes are seen. `approved_spend_usd: 0` records that no rental is approved.
+outcomes are seen. `approved_spend_usd: 7.5` records the approved budget target,
+not an enforced billing cap.
 
 - Download only OSV-5M test.csv and test archive 00.zip (about 2.25GB images),
   not the whole dataset, plus the three street galleries and encoder assets.
@@ -125,7 +127,7 @@ concurrently. Do not automatically replace an interrupted spot rental.
 `selected.json`, `report.json`, final paired predictions, and
 `prediction_config.json`. Preserve failure logs even when no improvement wins.
 
-The billing gate remains CLOSED until SSH registration and rental are approved.
-Then the first paid gates are actual CUDA visibility, asset verification, and
+SSH registration and the specific rental are approved and have been performed.
+The first paid gates are actual CUDA visibility, asset verification, and
 finite real-tower retrieval. Stop on failures rather than silently changing the
 experiment. A local smoke test is not evidence those GPU gates have passed.
